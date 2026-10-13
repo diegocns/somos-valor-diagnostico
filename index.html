@@ -1,0 +1,1428 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Diagnóstico de Valor Financeiro | Somos Valor</title>
+  <meta name="description" content="Em 2 minutos, descubra quanto dinheiro está parado dentro da sua empresa: caixa em recebíveis, novas receitas financeiras, impostos e funding mais barato." />
+  <meta name="theme-color" content="#0E2323" />
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iOCIgZmlsbD0iIzBFMjMyMyIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQgNS4yKSBzY2FsZSguOTUpIiBmaWxsPSIjM0ZBNjg0Ij48cGF0aCBkPSJNNC42NC4wM2MtMS4xNy4wMy0yLjYxLjczLTMuMzcsMS41OEMuNzIsMi4yMiwwLDMuNTEsMCw0LjYyYzAsMS4wNS4zOCwyLjExLDEuMzksMy4xNGw1LjkzLDUuOTIsMi44OC0yLjg4TDMuOSw0LjUybC0xLjI3LS42NiwxLjMzLjI2LDEwLjk0LS4wN2gyLjczaDIuNzloNC4xVjBaIi8+PHBhdGggZD0iTTE5Ljg2LDIxLjYyYzEuMTctLjAzLDIuNjEtLjczLDMuMzctMS41OC41NS0uNjIsMS4yNy0xLjksMS4yNy0zLjAxLDAtMS4wNS0uMzgtMi4xMS0xLjM5LTMuMTRsLTUuOTMtNS45Mi0yLjg4LDIuODgsNi4yOSw2LjI5LDEuMjcuNjYtMS4zMy0uMjYtMTAuOTQuMDdILjI3djQuMDRaIi8+PC9nPjwvc3ZnPgo=" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+/* Somos Valor — identidade: verde-petróleo profundo, verde valor, menta; Space Grotesk + Inter */
+:root {
+  --deep: #0E2323;
+  --deep-2: #172626;
+  --deep-3: #1F3433;
+  --petrol: #065158;
+  --teal: #1F514D;
+  --teal-2: #2F7468;
+  --green: #3FA684;
+  --green-2: #57C29C;
+  --mint: #B3E6D5;
+  --cream: #F9FAFA;
+  --ink: #172626;
+  --ink-2: #3B4F4F;
+  --gray: #677E7E;
+  --line-dark: rgba(179, 230, 213, 0.14);
+  --line-light: #E1E8E6;
+  --surface-light: #FFFFFF;
+  --bg-light: #F2F5F4;
+  --danger: #C2553D;
+  --warn: #D49A2A;
+  --info: #2F8FA6;
+  --ok: #3FA684;
+  --radius: 18px;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --shadow-deep: 0 28px 60px -36px rgba(14, 35, 35, 0.85);
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--deep);
+  color: var(--cream);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+body.light { background: var(--bg-light); color: var(--ink); }
+button { font: inherit; cursor: pointer; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; margin: 0; line-height: 1.12; }
+p { margin: 0; }
+.wrap { width: 100%; max-width: 720px; margin: 0 auto; padding: 0 16px; }
+.wrap-wide { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+.hl { color: var(--green); }
+.kicker { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); }
+.muted { color: rgba(249, 250, 250, 0.62); }
+.light .muted { color: var(--gray); }
+
+/* ───────── Shell escuro (intro + perguntas) ───────── */
+.shell {
+  min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column;
+  background:
+    radial-gradient(900px 500px at 85% -10%, rgba(63, 166, 132, 0.18), transparent 60%),
+    radial-gradient(700px 500px at -10% 110%, rgba(6, 81, 88, 0.45), transparent 60%),
+    var(--deep);
+}
+.topbar { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; gap: 12px; }
+.logo { height: 18px; width: auto; display: block; }
+.topbar .tag { font-size: 11px; color: rgba(249, 250, 250, 0.55); letter-spacing: 0.08em; white-space: nowrap; }
+main.stage { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 8px 0 40px; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  border: 0; border-radius: 999px; padding: 15px 26px; font-weight: 600; font-size: 15px;
+  text-decoration: none; transition: transform .15s ease, filter .15s ease, background .15s;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--green); color: var(--deep); box-shadow: 0 12px 30px -14px rgba(63, 166, 132, 0.9); }
+.btn-primary:hover { filter: brightness(1.07); }
+.btn-primary[disabled] { opacity: .45; cursor: not-allowed; box-shadow: none; }
+.btn-ghost { background: transparent; color: inherit; border: 1px solid var(--line-dark); }
+.light .btn-ghost { border-color: var(--line-light); }
+.btn-block { width: 100%; }
+
+/* Intro */
+.intro { text-align: center; padding: 20px 0 8px; }
+.pill {
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px;
+  border: 1px solid var(--line-dark); background: rgba(31, 52, 51, 0.6);
+  font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(249, 250, 250, 0.7);
+}
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(63,166,132,.6); animation: ping 1.8s infinite; }
+@keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(63,166,132,.55); } 80%,100% { box-shadow: 0 0 0 9px rgba(63,166,132,0); } }
+.intro h1 { font-size: clamp(32px, 7vw, 54px); font-weight: 600; margin-top: 22px; }
+.intro .lead { max-width: 560px; margin: 18px auto 0; font-size: clamp(15px, 2.4vw, 17px); color: rgba(249, 250, 250, 0.72); }
+.badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; margin: 22px 0 28px; font-size: 13px; color: rgba(249, 250, 250, 0.7); }
+.badges span { display: inline-flex; align-items: center; gap: 6px; }
+.badges svg { color: var(--green); }
+.motors { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 36px; text-align: left; }
+.motor-mini { border: 1px solid var(--line-dark); background: rgba(23, 38, 38, 0.7); border-radius: 16px; padding: 14px; }
+.motor-mini .n { font-family: var(--font-display); color: var(--green); font-size: 12px; font-weight: 600; }
+.motor-mini b { display: block; font-family: var(--font-display); font-size: 15px; margin-top: 6px; }
+.motor-mini p { font-size: 12.5px; color: rgba(249, 250, 250, 0.58); margin-top: 4px; }
+
+/* Progresso */
+.progress { margin-bottom: 26px; }
+.progress-groups { display: flex; gap: 6px; }
+.progress-groups .g { flex: 1; }
+.progress-groups .bar { height: 4px; border-radius: 4px; background: rgba(179, 230, 213, 0.12); overflow: hidden; }
+.progress-groups .bar i { display: block; height: 100%; background: var(--green); border-radius: 4px; transition: width .4s ease; }
+.progress-groups .lbl { font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; margin-top: 8px; color: rgba(249, 250, 250, 0.4); }
+.progress-groups .g.on .lbl { color: var(--mint); }
+
+.back { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(249, 250, 250, 0.6); background: none; border: 0; padding: 0; margin-bottom: 18px; }
+.back:hover { color: var(--cream); }
+.back[disabled] { opacity: .3; cursor: default; }
+
+.q-head { text-align: center; animation: up .35s ease both; }
+.q-head h1 { font-size: clamp(23px, 4.6vw, 34px); font-weight: 600; margin-top: 10px; }
+.q-head .helper { margin-top: 10px; font-size: 14px; color: rgba(249, 250, 250, 0.6); }
+@keyframes up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+.options { display: grid; gap: 10px; margin-top: 26px; animation: up .35s .05s ease both; }
+.options.cols-2 { grid-template-columns: 1fr 1fr; }
+.opt {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 14px; text-align: left;
+  border: 1px solid var(--line-dark); background: rgba(23, 38, 38, 0.72); color: var(--cream);
+  border-radius: 16px; padding: 16px; transition: border-color .15s, background .15s, box-shadow .15s;
+}
+.opt:hover { border-color: rgba(63, 166, 132, 0.5); background: rgba(31, 52, 51, 0.9); }
+.opt .radio { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid rgba(179, 230, 213, 0.35); display: grid; place-items: center; }
+.opt .t { font-weight: 500; font-size: 15px; }
+.opt .d { display: block; font-size: 12.5px; color: rgba(249, 250, 250, 0.55); margin-top: 2px; }
+.opt .sel { font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--green); opacity: 0; }
+.opt.on { border-color: var(--green); background: rgba(31, 81, 77, 0.55); box-shadow: 0 0 0 4px rgba(63, 166, 132, 0.12); }
+.opt.on .radio { border-color: var(--green); background: var(--green); color: var(--deep); }
+.opt.on .sel { opacity: 1; }
+
+.exact { margin-top: 16px; border: 1px dashed var(--line-dark); border-radius: 14px; padding: 14px 16px; }
+.exact label { font-size: 13px; color: rgba(249, 250, 250, 0.7); display: block; margin-bottom: 8px; }
+.money { display: flex; align-items: center; gap: 8px; }
+.money span { color: rgba(249, 250, 250, 0.5); font-weight: 600; }
+
+.q-foot { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 22px; flex-wrap: wrap; }
+.q-foot .meta { font-size: 12px; color: rgba(249, 250, 250, 0.45); }
+
+.signals { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 22px; min-height: 30px; }
+.signal { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 6px 11px; border-radius: 999px; background: rgba(63, 166, 132, 0.12); color: var(--mint); border: 1px solid rgba(63, 166, 132, 0.25); animation: up .4s ease both; }
+
+/* Inputs */
+.field { display: grid; gap: 6px; }
+.field label { font-size: 13px; font-weight: 500; color: rgba(249, 250, 250, 0.8); }
+.input {
+  width: 100%; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line-dark);
+  background: rgba(14, 35, 35, 0.8); color: var(--cream); font: inherit; font-size: 16px; outline: none;
+}
+.input:focus { border-color: var(--green); box-shadow: 0 0 0 4px rgba(63, 166, 132, 0.15); }
+.input.err { border-color: var(--danger); }
+.hint { font-size: 12px; color: rgba(249, 250, 250, 0.5); min-height: 16px; }
+.hint.ok { color: var(--green-2); }
+.hint.bad { color: #E98A72; }
+.form-card { border: 1px solid var(--line-dark); background: rgba(23, 38, 38, 0.8); border-radius: 22px; padding: 24px; display: grid; gap: 14px; margin-top: 24px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.fine { font-size: 12px; color: rgba(249, 250, 250, 0.5); text-align: center; }
+
+/* Analisando */
+.analyzing { text-align: center; }
+.spinner { width: 56px; height: 56px; border-radius: 50%; border: 3px solid rgba(179, 230, 213, 0.15); border-top-color: var(--green); margin: 0 auto 26px; animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.checklist { list-style: none; padding: 0; margin: 26px auto 0; max-width: 420px; text-align: left; display: grid; gap: 12px; }
+.checklist li { display: flex; gap: 10px; align-items: center; color: rgba(249, 250, 250, 0.35); transition: color .3s; font-size: 14.5px; }
+.checklist li.done { color: var(--cream); }
+.checklist li .ck { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid rgba(179, 230, 213, 0.25); display: grid; place-items: center; flex: none; }
+.checklist li.done .ck { background: var(--green); border-color: var(--green); color: var(--deep); }
+
+/* ───────── Resultado (claro) ───────── */
+.r-top { background: var(--deep); color: var(--cream); }
+.r-hero {
+  background:
+    radial-gradient(800px 400px at 90% 0%, rgba(63, 166, 132, 0.22), transparent 60%),
+    radial-gradient(600px 400px at 0% 100%, rgba(6, 81, 88, 0.5), transparent 60%),
+    var(--deep);
+  color: var(--cream); padding: 10px 0 44px;
+}
+.r-hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 28px; align-items: center; margin-top: 18px; }
+.r-hero h1 { font-size: clamp(26px, 4.4vw, 40px); font-weight: 600; margin-top: 12px; }
+.r-hero .sub { margin-top: 12px; color: rgba(249, 250, 250, 0.68); font-size: 15px; max-width: 520px; }
+.gauge-card { border: 1px solid var(--line-dark); background: rgba(23, 38, 38, 0.65); border-radius: 22px; padding: 22px 18px 20px; display: flex; flex-direction: column; align-items: center; }
+.gauge-num { font-family: var(--font-display); font-weight: 700; font-size: 52px; line-height: 1; margin-top: -6px; }
+.gauge-num small { font-size: 22px; color: rgba(249, 250, 250, 0.4); }
+.band { margin-top: 12px; display: inline-flex; padding: 6px 14px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.band.danger { background: rgba(194, 85, 61, .18); color: #F2A08A; }
+.band.warn { background: rgba(212, 154, 42, .18); color: #F2C66B; }
+.band.info { background: rgba(47, 143, 166, .2); color: #8FD3E3; }
+.band.ok { background: rgba(63, 166, 132, .2); color: var(--mint); }
+.hero-total { margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--line-dark); }
+.hero-total .v { font-family: var(--font-display); font-size: clamp(34px, 6vw, 50px); font-weight: 700; color: var(--green-2); letter-spacing: -0.02em; line-height: 1.05; margin-top: 6px; }
+.hero-total p { font-size: 13px; color: rgba(249, 250, 250, 0.6); margin-top: 6px; }
+.hero-cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+
+.section { margin-top: 22px; }
+.card { background: var(--surface-light); border: 1px solid var(--line-light); border-radius: 22px; padding: 26px; }
+.card-deep { background: var(--deep); color: var(--cream); border-radius: 22px; padding: 26px; box-shadow: var(--shadow-deep); border: 1px solid rgba(63, 166, 132, 0.25); }
+.card h2 { font-size: clamp(21px, 3.2vw, 28px); font-weight: 600; margin-top: 8px; }
+.card-deep h2, .card-deep h3 { font-weight: 600; }
+
+.motor-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: -26px; position: relative; }
+.mc { position: relative; background: var(--surface-light); border: 1px solid var(--line-light); border-radius: 20px; padding: 20px; box-shadow: 0 18px 40px -30px rgba(14, 35, 35, 0.5); }
+.mc.top { background: var(--deep-2); color: var(--cream); border-color: rgba(63, 166, 132, 0.35); }
+.mc .flag { position: absolute; top: -10px; left: 18px; background: var(--green); color: var(--deep); font-size: 9.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
+.mc .lbl { display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; color: var(--gray); }
+.mc.top .lbl { color: var(--mint); }
+.mc .val { font-family: var(--font-display); font-size: clamp(24px, 3.4vw, 30px); font-weight: 700; margin-top: 10px; letter-spacing: -0.02em; }
+.mc .per { font-size: 14px; font-weight: 500; color: var(--gray); }
+.mc.top .per { color: rgba(249, 250, 250, 0.55); }
+.mc p { font-size: 13px; color: var(--gray); margin-top: 6px; line-height: 1.45; }
+.mc.top p { color: rgba(249, 250, 250, 0.62); }
+.ico { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; background: rgba(63, 166, 132, 0.14); color: var(--green); }
+
+.summary-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 18px; }
+.bullets { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 12px; }
+.bullets li { display: grid; grid-template-columns: 28px 1fr; gap: 10px; font-size: 15px; color: var(--ink-2); }
+.bullets b { color: var(--ink); }
+.divider { height: 1px; background: var(--line-light); margin: 22px 0; }
+.cta-list { list-style: none; padding: 0; margin: 18px 0 22px; display: grid; gap: 10px; font-size: 14px; color: rgba(249, 250, 250, 0.78); }
+.cta-list li { display: flex; gap: 10px; align-items: flex-start; }
+.cta-list svg { color: var(--green); flex: none; margin-top: 2px; }
+
+.fronts { display: grid; gap: 12px; margin-top: 20px; }
+.front { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: start; padding: 16px; border: 1px solid var(--line-light); border-radius: 16px; background: #FBFCFC; }
+.front .nota { font-family: var(--font-display); font-weight: 700; font-size: 13px; width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; }
+.nota.n-ap { background: var(--deep); color: var(--green-2); }
+.nota.n-a { background: rgba(63, 166, 132, 0.16); color: var(--teal); }
+.nota.n-b { background: #EEF2F1; color: var(--gray); }
+.front h3 { font-size: 16px; font-weight: 600; font-family: var(--font-display); }
+.front p { font-size: 13.5px; color: var(--gray); margin-top: 4px; }
+.front .mt { font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--teal-2); white-space: nowrap; padding: 4px 9px; border-radius: 999px; background: rgba(63, 166, 132, 0.1); }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 14px; font-size: 12px; color: var(--gray); }
+.legend span { display: inline-flex; gap: 6px; align-items: center; }
+.legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+
+.versus { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+.vs-row { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line-dark); font-size: 14px; }
+.vs-row:last-child { border-bottom: 0; }
+.vs-row span:first-child { color: rgba(249, 250, 250, 0.6); }
+.vs-row b { text-align: right; }
+.vs-bad { border: 1px solid #F0D9D2; background: #FDF7F5; border-radius: 22px; padding: 22px; }
+.vs-bad .vs-row { border-color: #F0D9D2; }
+.vs-bad .vs-row span:first-child { color: var(--gray); }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.chip.go { background: var(--green); color: var(--deep); }
+.chip.stop { background: #fff; color: var(--danger); border: 1px solid #F0D9D2; }
+.vs-total { margin-top: 14px; padding: 16px; border-radius: 14px; }
+.vs-total .v { font-family: var(--font-display); font-weight: 700; font-size: clamp(24px, 4vw, 32px); margin-top: 4px; }
+
+.case { display: grid; grid-template-columns: 1.1fr 1fr; gap: 22px; align-items: center; }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.stat { border: 1px solid var(--line-dark); border-radius: 14px; padding: 14px; }
+.stat b { display: block; font-family: var(--font-display); font-size: 22px; color: var(--green-2); }
+.stat span { font-size: 12px; color: rgba(249, 250, 250, 0.6); }
+
+.next { display: grid; grid-template-columns: 1.15fr .85fr; overflow: hidden; padding: 0; }
+.next > div { padding: 30px; }
+.next .side { border-left: 1px solid var(--line-dark); background: rgba(0, 0, 0, 0.12); display: grid; gap: 18px; align-content: center; }
+.trust { display: grid; grid-template-columns: 30px 1fr; gap: 10px; }
+.trust b { font-family: var(--font-display); font-size: 15px; }
+.trust p { font-size: 13px; color: rgba(249, 250, 250, 0.6); margin-top: 2px; }
+
+.r-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 26px; }
+.r-actions .btn { padding: 11px 18px; font-size: 13.5px; color: var(--ink); }
+.disclaimer { font-size: 12px; color: var(--gray); text-align: center; max-width: 760px; margin: 22px auto 0; line-height: 1.6; }
+footer.r-foot { padding: 34px 0 110px; }
+
+.sticky-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: rgba(14, 35, 35, 0.94); backdrop-filter: blur(8px); border-top: 1px solid var(--line-dark); display: none; }
+.sticky-cta.show { display: block; }
+.sticky-cta .in { max-width: 720px; margin: 0 auto; display: flex; align-items: center; gap: 12px; justify-content: space-between; }
+.sticky-cta .t { color: var(--cream); font-size: 13px; line-height: 1.3; }
+.sticky-cta .t b { display: block; font-family: var(--font-display); color: var(--green-2); font-size: 17px; }
+.sticky-cta .btn { padding: 12px 18px; font-size: 14px; white-space: nowrap; }
+
+.modal-bg { position: fixed; inset: 0; z-index: 60; background: rgba(14, 35, 35, 0.8); backdrop-filter: blur(4px); display: grid; place-items: center; padding: 16px; animation: up .25s ease both; }
+.modal { width: 100%; max-width: 380px; border-radius: 22px; overflow: hidden; background: var(--surface-light); color: var(--ink); position: relative; box-shadow: 0 40px 80px -40px rgba(0,0,0,.8); }
+.modal .top { background: var(--deep); color: var(--cream); padding: 24px; }
+.modal .top .v { font-family: var(--font-display); font-weight: 700; font-size: 34px; color: var(--green-2); margin-top: 6px; }
+.modal .bot { padding: 22px 24px 24px; display: grid; gap: 14px; }
+.modal .x { position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; border-radius: 50%; border: 0; background: rgba(255,255,255,.12); color: var(--cream); }
+
+@media (max-width: 860px) {
+  .r-hero-grid, .summary-grid, .case, .next, .versus { grid-template-columns: 1fr; }
+  .motor-cards { grid-template-columns: 1fr; margin-top: -20px; }
+  .next .side { border-left: 0; border-top: 1px solid var(--line-dark); }
+}
+@media (max-width: 560px) {
+  .motors { grid-template-columns: 1fr; }
+  .options.cols-2, .grid-2 { grid-template-columns: 1fr; }
+  .opt { padding: 14px; gap: 12px; grid-template-columns: auto minmax(0,1fr); }
+  .opt .sel { display: none; }
+  .card, .card-deep { padding: 20px; }
+  .next > div { padding: 22px; }
+  .versus .card-deep, .vs-bad { padding: 18px; }
+  .topbar .tag { display: none; }
+  .front { grid-template-columns: auto 1fr; }
+  .front .mt { grid-column: 2; justify-self: start; }
+  .q-foot { flex-direction: column-reverse; align-items: stretch; }
+  .q-foot .btn { width: 100%; }
+}
+
+@media print {
+  body.light { background: #fff; }
+  .sticky-cta, .r-actions, .hero-cta, .modal-bg, .no-print { display: none !important; }
+  .r-hero, .card-deep, .mc.top { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .section { break-inside: avoid; }
+  footer.r-foot { padding-bottom: 20px; }
+}
+
+</style>
+</head>
+<body>
+  <div id="app" aria-live="polite"></div>
+  <noscript>Ative o JavaScript para fazer o diagnóstico.</noscript>
+  <script>
+// Configuração do funil — edite aqui sem mexer no app.js
+window.SV_CONFIG = {
+  // WhatsApp comercial da Somos Valor (só números, com DDI 55). PREENCHER.
+  whatsapp: "5500000000000",
+
+  // Meta Pixel (mesmo ID usado hoje em quiz.somosvalor.com.br)
+  metaPixelId: "",
+
+  // Webhook que recebe o lead e os eventos do funil (ex.: n8n, Make, CRM). Vazio = não envia.
+  webhookUrl: "",
+
+  // Isca digital usada como prova social no resultado
+  caseUrl: "https://casehavan.somosvalor.com.br/",
+  privacyUrl: "https://somosvalor.com.br/",
+
+  // Parâmetros comerciais — mesma estrutura da calculadora de referência.
+  // MARGEM_COMERCIAL multiplica as estimativas técnicas antes de exibir (1 = número técnico puro).
+  comercial: {
+    MARGEM_COMERCIAL: 2.2,
+    USAR_TOPO_FAIXA: true,
+    PISO_FRENTES: 4,
+    PISO_HERO: 180000,
+    PISO_RECUPERAR_PCT: 0.15,
+    PISO_ECONOMIZAR_PCT: 0.1,
+    PISO_PROTEGER_PCT: 0.1,
+    CAP_RECUPERAR: 0.4,
+    CAP_ECONOMIA: 0.45,
+    CAP_PROTEGER: 0.4,
+    CAP_TOTAL_5A: 0.55,
+    BONUS_POR_TESE: 0.06,
+    BONUS_TESE_CAP: 0.36,
+    QUAL_LEAD_SCORE: 60,
+    QUAL_FATURAMENTO_ANUAL: 5e6
+  }
+};
+
+</script>
+  <script>
+// Motor do Diagnóstico de Valor Financeiro — Somos Valor
+// Mesma arquitetura da calculadora de referência:
+//   respostas -> base financeira -> frentes (teses) ligadas por gatilhos
+//   -> 3 motores + estoque -> camada comercial (margem, pisos, tetos, bônus) -> índice 0-100 + lead score
+(function (root) {
+  "use strict";
+
+  // ───────────────────────── Perguntas ─────────────────────────
+  const SIM_NAO = [
+    { id: "sim", label: "Sim" },
+    { id: "nao", label: "Não" },
+    { id: "nao_sei", label: "Não sei dizer" }
+  ];
+
+  const Q = {
+    faturamento: {
+      id: "faturamento", group: "perfil", category: "Porte",
+      title: "Qual o faturamento anual, somando todas as empresas do grupo?",
+      allowExact: true,
+      options: [
+        { id: "ate5", label: "Até R$ 5 milhões", description: "média de até R$ 417 mil/mês" },
+        { id: "5a20", label: "De R$ 5M a R$ 20M", description: "R$ 417 mil a R$ 1,67M/mês" },
+        { id: "20a40", label: "De R$ 20M a R$ 40M", description: "R$ 1,67M a R$ 3,33M/mês" },
+        { id: "40a100", label: "De R$ 40M a R$ 100M", description: "R$ 3,33M a R$ 8,33M/mês" },
+        { id: "acima100", label: "Acima de R$ 100M", description: "acima de R$ 8,33M/mês" }
+      ]
+    },
+    regime: {
+      id: "regime", group: "perfil", category: "Contexto tributário",
+      title: "Qual o regime tributário da sua empresa?",
+      options: [
+        { id: "real", label: "Lucro Real" },
+        { id: "presumido", label: "Lucro Presumido" },
+        { id: "simples", label: "Simples Nacional" },
+        { id: "nao_sei", label: "Não sei dizer" }
+      ]
+    },
+    setor: {
+      id: "setor", group: "perfil", category: "Setor",
+      title: "Em qual setor sua empresa atua?",
+      options: [
+        { id: "industria_distribuicao", label: "Indústria e Distribuição", description: "Indústria, atacado, atacarejo, distribuidor" },
+        { id: "varejo_alimentar", label: "Varejo e Alimentar", description: "Moda, calçados, eletro, supermercado, farmácias" },
+        { id: "saude_servicos", label: "Saúde e Serviços", description: "Clínicas, hospitais, labs, odontologia, serviços B2B" },
+        { id: "tecnologia_plataformas", label: "Tecnologia e Plataformas", description: "Marketplace, SaaS, fintechs" },
+        { id: "agro_imob_outros", label: "Agro, Imobiliário e Outros", description: "Agro, imobiliário, construção, locadora, concessionária" }
+      ]
+    },
+    dor: {
+      id: "dor", group: "perfil", category: "Prioridade",
+      title: "O que mais incomoda hoje?",
+      options: [
+        { id: "imposto", label: "Pago muito imposto e nunca parei pra estruturar" },
+        { id: "capital", label: "Preciso de capital pra crescer, o banco cobra caro demais" },
+        { id: "lucro", label: "Vendo bem, mas o lucro que sobra não reflete isso" },
+        { id: "clientes", label: "Tenho clientes ou fornecedores que poderiam me gerar mais receita" },
+        { id: "divida", label: "Tenho dívida pesada e quero reestruturar" }
+      ]
+    },
+
+    // ── Operação financeira (equivale ao bloco por regime da referência)
+    vendas_prazo: {
+      id: "vendas_prazo", group: "operacao", category: "Recebíveis",
+      title: "Quanto das suas vendas é recebido a prazo?",
+      helper: "Cartão parcelado, boleto, duplicata, convênio, crediário.",
+      options: [
+        { id: "nenhuma", label: "Praticamente tudo à vista" },
+        { id: "ate20", label: "Até 20%" },
+        { id: "20a50", label: "Entre 20% e 50%" },
+        { id: "50a80", label: "Entre 50% e 80%" },
+        { id: "acima80", label: "Mais de 80%" }
+      ]
+    },
+    prazo_medio: {
+      id: "prazo_medio", group: "operacao", category: "Recebíveis",
+      title: "Qual o prazo médio para receber dessas vendas?",
+      when: a => a.vendas_prazo && a.vendas_prazo !== "nenhuma",
+      options: [
+        { id: "ate30", label: "Até 30 dias" },
+        { id: "30a60", label: "De 30 a 60 dias" },
+        { id: "60a90", label: "De 60 a 90 dias" },
+        { id: "acima90", label: "Mais de 90 dias" }
+      ]
+    },
+    antecipa: {
+      id: "antecipa", group: "operacao", category: "Antecipação",
+      title: "A empresa antecipa recebíveis em banco, adquirente ou factoring?",
+      when: a => a.vendas_prazo && a.vendas_prazo !== "nenhuma",
+      options: [
+        { id: "todo_mes", label: "Sim, todo mês" },
+        { id: "as_vezes", label: "Às vezes, quando o caixa aperta" },
+        { id: "nao", label: "Não antecipamos" }
+      ]
+    },
+    taxa_antecipacao: {
+      id: "taxa_antecipacao", group: "operacao", category: "Antecipação",
+      title: "Quanto vocês pagam de taxa na antecipação, por mês?",
+      when: a => a.antecipa === "todo_mes" || a.antecipa === "as_vezes",
+      options: [
+        { id: "ate1_5", label: "Até 1,5% ao mês" },
+        { id: "1_5a2_5", label: "Entre 1,5% e 2,5% ao mês" },
+        { id: "acima2_5", label: "Mais de 2,5% ao mês" },
+        { id: "nao_sei", label: "Não sei dizer" }
+      ]
+    },
+    cobra_juros: {
+      id: "cobra_juros", group: "operacao", category: "Receita financeira",
+      title: "Quando o cliente parcela ou atrasa, a empresa cobra juros ou multa?",
+      when: a => a.vendas_prazo && a.vendas_prazo !== "nenhuma",
+      options: [
+        { id: "sim_misturado", label: "Sim, e entra junto com a receita da operação" },
+        { id: "sim_separado", label: "Sim, numa empresa ou estrutura separada" },
+        { id: "nao", label: "Não cobramos" },
+        { id: "nao_sei", label: "Não sei dizer" }
+      ]
+    },
+    divida: {
+      id: "divida", group: "operacao", category: "Funding",
+      title: "Quanto a empresa deve hoje em empréstimos e financiamentos bancários?",
+      helper: "Em relação ao faturamento anual.",
+      options: [
+        { id: "nao", label: "Não temos dívida bancária relevante" },
+        { id: "ate10", label: "Até 10% do faturamento anual" },
+        { id: "10a30", label: "Entre 10% e 30%" },
+        { id: "acima30", label: "Mais de 30%" }
+      ]
+    },
+    custo_divida: {
+      id: "custo_divida", group: "operacao", category: "Funding",
+      title: "Qual o custo médio dessa dívida?",
+      when: a => a.divida && a.divida !== "nao",
+      options: [
+        { id: "ate_cdi3", label: "Até CDI + 3% ao ano" },
+        { id: "cdi3a6", label: "Entre CDI + 3% e CDI + 6%" },
+        { id: "acima_cdi6", label: "Acima de CDI + 6% (ou capital de giro caro)" },
+        { id: "nao_sei", label: "Não sei dizer" }
+      ]
+    },
+    fornecedores: {
+      id: "fornecedores", group: "operacao", category: "Cadeia",
+      title: "Seus fornecedores dariam desconto para receber à vista?",
+      options: [
+        { id: "sim_bom", label: "Sim, um desconto relevante" },
+        { id: "sim_pouco", label: "Sim, um desconto pequeno" },
+        { id: "nao", label: "Não" },
+        { id: "nao_sei", label: "Não sei dizer" }
+      ]
+    },
+
+    // ── Setoriais (3 por setor)
+    si1_b2b_prazo: { id: "si1_b2b_prazo", group: "setor", sector: "industria_distribuicao", category: "Indústria e Distribuição", title: "Vende para outras empresas com boleto ou duplicata a prazo?", options: SIM_NAO },
+    si2_pequeno_varejo: { id: "si2_pequeno_varejo", group: "setor", sector: "industria_distribuicao", category: "Indústria e Distribuição", title: "Seus clientes (revendas, pequeno varejo) comprariam mais com mais prazo ou limite de crédito?", options: SIM_NAO },
+    si3_imobilizado: { id: "si3_imobilizado", group: "setor", sector: "industria_distribuicao", category: "Indústria e Distribuição", title: "Pretende investir em máquinas, frota ou galpão nos próximos 24 meses?", options: SIM_NAO },
+
+    sv1_parcelado: { id: "sv1_parcelado", group: "setor", sector: "varejo_alimentar", category: "Varejo e Alimentar", title: "Mais de 30% das vendas são no cartão parcelado ou crediário?", options: SIM_NAO },
+    sv2_crediario: { id: "sv2_crediario", group: "setor", sector: "varejo_alimentar", category: "Varejo e Alimentar", title: "A empresa já oferece crediário ou cartão próprio?", options: SIM_NAO },
+    sv3_convenio: { id: "sv3_convenio", group: "setor", sector: "varejo_alimentar", category: "Varejo e Alimentar", title: "Recebe de convênios, PBMs ou vouchers com prazo?", options: SIM_NAO },
+
+    ss1_convenio: { id: "ss1_convenio", group: "setor", sector: "saude_servicos", category: "Saúde e Serviços", title: "Recebe de convênios, planos ou grandes clientes com prazo acima de 30 dias?", options: SIM_NAO },
+    ss2_parcelamento: { id: "ss2_parcelamento", group: "setor", sector: "saude_servicos", category: "Saúde e Serviços", title: "Clientes ou pacientes deixam de fechar por falta de parcelamento?", options: SIM_NAO },
+    ss3_folha: { id: "ss3_folha", group: "setor", sector: "saude_servicos", category: "Saúde e Serviços", title: "Folha e insumos apertam o caixa antes do recebimento?", options: SIM_NAO },
+
+    st1_sellers: { id: "st1_sellers", group: "setor", sector: "tecnologia_plataformas", category: "Tecnologia e Plataformas", title: "Tem sellers, parceiros ou clientes que precisam de capital de giro?", options: SIM_NAO },
+    st2_checkout: { id: "st2_checkout", group: "setor", sector: "tecnologia_plataformas", category: "Tecnologia e Plataformas", title: "Oferecer crédito no checkout aumentaria a conversão?", options: SIM_NAO },
+    st3_recorrente: { id: "st3_recorrente", group: "setor", sector: "tecnologia_plataformas", category: "Tecnologia e Plataformas", title: "A maior parte da receita é recorrente (assinaturas, contratos)?", options: SIM_NAO },
+
+    sa1_venda_prazo: { id: "sa1_venda_prazo", group: "setor", sector: "agro_imob_outros", category: "Agro, Imobiliário e Outros", title: "Vende safra, imóveis, veículos ou máquinas com pagamento parcelado?", options: SIM_NAO },
+    sa2_imobilizado: { id: "sa2_imobilizado", group: "setor", sector: "agro_imob_outros", category: "Agro, Imobiliário e Outros", title: "Tem ou vai comprar frota, máquinas ou imóveis relevantes?", options: SIM_NAO },
+    sa3_financia_cliente: { id: "sa3_financia_cliente", group: "setor", sector: "agro_imob_outros", category: "Agro, Imobiliário e Outros", title: "Seu cliente depende de financiamento bancário para comprar de você?", options: SIM_NAO },
+
+    // ── Estrutura e momento (equivale ao bloco Reforma da referência)
+    margem: {
+      id: "margem", group: "estrutura", category: "Resultado",
+      title: "Qual a margem de lucro líquida média da empresa?",
+      options: [
+        { id: "ate5", label: "Até 5%" },
+        { id: "5a10", label: "Entre 5% e 10%" },
+        { id: "10a20", label: "Entre 10% e 20%" },
+        { id: "acima20", label: "Acima de 20%" },
+        { id: "nao_sei", label: "Não sei dizer" }
+      ]
+    },
+    holding: {
+      id: "holding", group: "estrutura", category: "Sócios",
+      title: "Os sócios já têm uma holding patrimonial estruturada?",
+      options: SIM_NAO
+    },
+    avaliou: {
+      id: "avaliou", group: "estrutura", category: "Estrutura",
+      title: "A empresa já avaliou ter um FIDC ou um braço financeiro próprio?",
+      options: [
+        { id: "nunca", label: "Nunca avaliamos" },
+        { id: "avaliou", label: "Já avaliamos, mas não saiu do papel" },
+        { id: "ja_tem", label: "Já temos uma estrutura assim" }
+      ]
+    },
+    urgencia: {
+      id: "urgencia", group: "estrutura", category: "Momento",
+      title: "Se fizer sentido, em quanto tempo você quer colocar isso de pé?",
+      options: [
+        { id: "ate3m", label: "Nos próximos 3 meses" },
+        { id: "3a6", label: "Em 3 a 6 meses" },
+        { id: "6a12", label: "Em 6 a 12 meses" },
+        { id: "pesquisando", label: "Só estou pesquisando" }
+      ]
+    }
+  };
+
+  const SECTOR_QS = {
+    industria_distribuicao: ["si1_b2b_prazo", "si2_pequeno_varejo", "si3_imobilizado"],
+    varejo_alimentar: ["sv1_parcelado", "sv2_crediario", "sv3_convenio"],
+    saude_servicos: ["ss1_convenio", "ss2_parcelamento", "ss3_folha"],
+    tecnologia_plataformas: ["st1_sellers", "st2_checkout", "st3_recorrente"],
+    agro_imob_outros: ["sa1_venda_prazo", "sa2_imobilizado", "sa3_financia_cliente"]
+  };
+
+  const GROUPS = [
+    { id: "perfil", label: "Perfil" },
+    { id: "operacao", label: "Operação financeira" },
+    { id: "setor", label: "Seu setor" },
+    { id: "estrutura", label: "Estrutura" }
+  ];
+
+  // Sequência dinâmica de perguntas, dada as respostas atuais
+  function questionFlow(a) {
+    const ids = ["faturamento", "regime", "setor", "dor",
+      "vendas_prazo", "prazo_medio", "antecipa", "taxa_antecipacao", "cobra_juros",
+      "divida", "custo_divida", "fornecedores"];
+    if (a.setor && SECTOR_QS[a.setor]) ids.push(...SECTOR_QS[a.setor]);
+    else ids.push("__setor_placeholder");
+    ids.push("margem", "holding", "avaliou", "urgencia");
+    return ids.filter(id => id === "__setor_placeholder" || !Q[id].when || Q[id].when(a));
+  }
+
+  // ───────────────────────── Tabelas de referência ─────────────────────────
+  const FAT_ANUAL = { ate5: 3.5e6, "5a20": 12e6, "20a40": 30e6, "40a100": 65e6, acima100: 150e6 };
+  const PORTE_RANK = { ate5: 0, "5a20": 1, "20a40": 2, "40a100": 3, acima100: 4 };
+  const PCT_PRAZO = { nenhuma: 0, ate20: 0.12, "20a50": 0.35, "50a80": 0.65, acima80: 0.88 };
+  const PRAZO_DIAS = { ate30: 25, "30a60": 45, "60a90": 75, acima90: 110 };
+  const ANTECIPA_SHARE = { todo_mes: 0.7, as_vezes: 0.3, nao: 0 };
+  const TAXA_MES = { ate1_5: 0.012, "1_5a2_5": 0.02, acima2_5: 0.03, nao_sei: 0.02 };
+  const DIVIDA_PCT = { nao: 0, ate10: 0.06, "10a30": 0.2, acima30: 0.4 };
+  const SPREAD_DIVIDA = { ate_cdi3: 0.025, cdi3a6: 0.045, acima_cdi6: 0.08, nao_sei: 0.05 };
+  const SPREAD_ESTRUTURA = 0.02; // custo-alvo de funding estruturado acima do CDI
+  const DESCONTO_FORN = { sim_bom: 0.03, sim_pouco: 0.015, nao: 0, nao_sei: 0.012 };
+  const COMPRAS_RATIO = { industria_distribuicao: 0.55, varejo_alimentar: 0.6, saude_servicos: 0.3, tecnologia_plataformas: 0.15, agro_imob_outros: 0.5 };
+  const MARGEM = { ate5: 0.035, "5a10": 0.075, "10a20": 0.14, acima20: 0.24, nao_sei: 0.08 };
+  // Carga tributária efetiva aproximada sobre faturamento, por regime
+  const CARGA_REGIME = { real: 0.15, presumido: 0.135, simples: 0.1, nao_sei: 0.135 };
+  const PIS_COFINS_JUROS = { real: 0.0925, presumido: 0.0365, simples: 0, nao_sei: 0.0365 };
+
+  const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+  const yes = v => v === "sim";
+
+  // ───────────────────────── Base financeira + frentes ─────────────────────────
+  function baseFinanceira(a) {
+    const regime = a.regime === "nao_sei" || !a.regime ? "nao_sei" : a.regime;
+    const setor = a.setor || "industria_distribuicao";
+    const fatAno = a.faturamentoNum > 0 ? a.faturamentoNum * 12 : FAT_ANUAL[a.faturamento || "5a20"];
+    let pPrazo = PCT_PRAZO[a.vendas_prazo || "nenhuma"];
+    if (yes(a.sv1_parcelado)) pPrazo = Math.max(pPrazo, 0.4);
+    if (yes(a.ss1_convenio) || yes(a.si1_b2b_prazo) || yes(a.sa1_venda_prazo)) pPrazo = Math.max(pPrazo, 0.25);
+    let prazoDias = pPrazo > 0 ? PRAZO_DIAS[a.prazo_medio || "30a60"] : 0;
+    const antecShare = ANTECIPA_SHARE[a.antecipa || "nao"];
+    const taxaMes = TAXA_MES[a.taxa_antecipacao || "nao_sei"];
+    const carteira = fatAno * pPrazo * prazoDias / 360;            // saldo médio de recebíveis
+    const volumeAntecipado = fatAno * pPrazo * antecShare;          // por ano
+    const desagioAno = volumeAntecipado * taxaMes * (prazoDias / 30); // pago a banco/adquirente
+    const divida = fatAno * DIVIDA_PCT[a.divida || "nao"];
+    const spreadDivida = SPREAD_DIVIDA[a.custo_divida || "nao_sei"];
+    const margem = MARGEM[a.margem || "nao_sei"];
+    const lucroAno = fatAno * margem;
+    const cargaTribAno = fatAno * CARGA_REGIME[regime];
+    const custoFinanceiroAno = desagioAno + divida * (0.12 + spreadDivida); // CDI de referência ~12%
+    // Base sobre a qual pisos e tetos comerciais são calculados (equivale à "carga" da referência)
+    const baseAnual = cargaTribAno + custoFinanceiroAno;
+    return { regime, setor, fatAno, fatMes: fatAno / 12, pPrazo, prazoDias, antecShare, taxaMes, carteira,
+      volumeAntecipado, desagioAno, divida, spreadDivida, margem, lucroAno, cargaTribAno, custoFinanceiroAno,
+      baseAnual, base5Anos: baseAnual * 5, porteRank: PORTE_RANK[a.faturamento || "5a20"] };
+  }
+
+  // motor: "caixa" (estoque, uma vez) | "receita" | "tributario" | "funding" (anuais)
+  function frentes(a, b) {
+    const out = [];
+    const add = f => { if (f.on && f.valor > 0) out.push(f); };
+    const jaTemEstrutura = a.avaliou === "ja_tem";
+    const fator = jaTemEstrutura ? 0.4 : 1; // quem já tem estrutura captura menos do que sobra
+
+    add({ code: "C1", motor: "caixa", nota: "A+", rotulo: "Caixa parado em recebíveis",
+      desc: "Vendas a prazo viram caixa no dia zero com capital próprio da estrutura, sem dívida no balanço.",
+      on: b.pPrazo > 0 && b.prazoDias > 0, valor: b.carteira * 0.7 });
+
+    add({ code: "R1", motor: "receita", nota: "A+", rotulo: "Monetização de recebíveis",
+      desc: "O deságio que hoje vai para banco e adquirente passa a ser receita da sua própria estrutura.",
+      on: b.antecShare > 0, valor: b.desagioAno * 0.85 * fator });
+
+    const sinalFinanciamento = yes(a.ss2_parcelamento) || yes(a.st2_checkout) || yes(a.sa3_financia_cliente) || yes(a.si2_pequeno_varejo) || (yes(a.sv1_parcelado) && !yes(a.sv2_crediario));
+    add({ code: "R2", motor: "receita", nota: sinalFinanciamento ? "A" : "B", rotulo: "Financiamento de clientes",
+      desc: "Sua empresa financia quem compra de você e fica com a taxa, em vez de entregar essa margem ao banco.",
+      on: (b.pPrazo >= 0.12 && a.cobra_juros !== "sim_separado") || sinalFinanciamento,
+      valor: b.fatAno * 0.01 * (sinalFinanciamento ? 1 : 0.6) * fator });
+
+    const desconto = DESCONTO_FORN[a.fornecedores || "nao_sei"];
+    add({ code: "R3", motor: "receita", nota: a.fornecedores === "sim_bom" ? "A" : "B", rotulo: "Antecipação a fornecedores",
+      desc: "Você paga fornecedores à vista com capital da estrutura, negocia desconto e captura o spread.",
+      on: desconto > 0, valor: b.fatAno * COMPRAS_RATIO[b.setor] * 0.3 * desconto });
+
+    add({ code: "R4", motor: "receita", nota: "B", rotulo: "Venda com garantia de recebível (B2B)",
+      desc: "O recebível do seu cliente vira garantia para dar mais prazo e limite, subindo o ticket sem subir o risco.",
+      on: b.setor === "industria_distribuicao" && (yes(a.si1_b2b_prazo) || yes(a.si2_pequeno_varejo)), valor: b.fatAno * 0.004 });
+
+    add({ code: "R5", motor: "receita", nota: "A", rotulo: "Crédito para sellers e no checkout",
+      desc: "Capital para sellers com base no histórico de vendas e crédito no checkout para elevar a conversão.",
+      on: b.setor === "tecnologia_plataformas" && (yes(a.st1_sellers) || yes(a.st2_checkout)), valor: b.fatAno * 0.008 });
+
+    add({ code: "R6", motor: "receita", nota: "A", rotulo: "Antecipação de convênios e PBMs",
+      desc: "Convênios, planos e PBMs pagos à vista pela estrutura própria: caixa para folha e estoque, deságio fica em casa.",
+      on: yes(a.ss1_convenio) || yes(a.sv3_convenio), valor: b.fatAno * 0.25 * 0.018 * 1.5 });
+
+    const pisCofins = PIS_COFINS_JUROS[b.regime];
+    add({ code: "T1", motor: "tributario", nota: a.cobra_juros === "sim_misturado" ? "A+" : "B", rotulo: "Segregação da receita financeira",
+      desc: "Juros e encargos cobrados de clientes saem da receita mercantil, eliminando PIS/COFINS sobre os juros.",
+      gatNS: a.cobra_juros === "nao_sei",
+      on: pisCofins > 0 && (a.cobra_juros === "sim_misturado" || a.cobra_juros === "nao_sei"),
+      valor: b.fatAno * b.pPrazo * 0.04 * pisCofins });
+
+    add({ code: "T2", motor: "tributario", nota: "A", rotulo: "Despesa financeira dedutível (IRPJ/CSLL)",
+      desc: "O deságio pago à sua estrutura é dedutível na operação e tributado a 15% no resgate, contra 34% no lucro.",
+      on: b.regime === "real" && (b.antecShare > 0 || b.pPrazo >= 0.2),
+      valor: (b.desagioAno + b.carteira * 0.015 * 12 * 0.3) * 0.19 * fator });
+
+    add({ code: "T3", motor: "tributario", nota: b.regime === "nao_sei" ? "A" : "B", rotulo: "Estudo de regime tributário",
+      desc: "Comparativo entre regimes com simulação do impacto de cada um no lucro líquido.",
+      on: b.regime === "nao_sei" || (b.regime === "presumido" && b.fatAno >= 20e6) || (b.regime === "simples" && b.fatAno >= 3.6e6),
+      valor: b.fatAno * 0.004 });
+
+    add({ code: "T4", motor: "tributario", nota: "A", rotulo: "Holding e tributação de dividendos",
+      desc: "Holding patrimonial para organizar a retirada dos sócios frente à retenção de IR sobre dividendos e à sucessão.",
+      on: a.holding !== "sim" && b.fatAno >= 5e6, valor: b.lucroAno * 0.04 });
+
+    add({ code: "F1", motor: "funding", nota: b.fatAno >= 20e6 ? "A" : "B", rotulo: "Fundo próprio (FIDC)",
+      desc: "Fundo regulado pela CVM que compra seus recebíveis e financia a operação com capital próprio e de investidores.",
+      on: b.pPrazo >= 0.2 && b.fatAno >= 5e6 && !jaTemEstrutura, valor: b.carteira * 0.04 });
+
+    add({ code: "F2", motor: "funding", nota: a.custo_divida === "acima_cdi6" ? "A+" : "A", rotulo: "Reestruturação de dívida",
+      desc: "Troca da dívida bancária cara por instrumento estruturado com custo menor e prazo maior.",
+      on: b.divida > 0 && b.spreadDivida > SPREAD_ESTRUTURA, valor: b.divida * (b.spreadDivida - SPREAD_ESTRUTURA) });
+
+    add({ code: "F3", motor: "funding", nota: "B", rotulo: "Financiamento de ativos imobilizados",
+      desc: "Máquinas, imóveis ou frota financiados pela própria estrutura, com despesa dedutível de IRPJ.",
+      on: yes(a.si3_imobilizado) || yes(a.sa2_imobilizado), valor: b.fatAno * 0.06 * 0.04 });
+
+    add({ code: "F4", motor: "funding", nota: "B", rotulo: "Capital de giro sem banco",
+      desc: "Funding próprio para cobrir o descasamento entre pagar folha e insumos e receber dos clientes.",
+      on: yes(a.ss3_folha) || a.dor === "capital", valor: b.fatAno * 0.003 });
+
+    return out;
+  }
+
+  // ───────────────────────── Diagnóstico técnico ─────────────────────────
+  function diagnosticar(a) {
+    const b = baseFinanceira(a);
+    const fs = frentes(a, b);
+    const soma = m => fs.filter(f => f.motor === m).reduce((s, f) => s + f.valor, 0);
+    const caixa = soma("caixa");
+    const receitaAno = soma("receita");
+    const tributarioAno = soma("tributario");
+    const fundingAno = soma("funding");
+    const anualTecnico = receitaAno + tributarioAno + fundingAno;
+
+    // Índice de Eficiência Financeira (0-100): quanto maior, menos valor na mesa
+    const oppPct = b.fatAno > 0 ? anualTecnico / b.fatAno : 0;
+    let indice = 100 - oppPct * 100 * 8;
+    if (a.antecipa === "todo_mes") indice -= 6;
+    if (a.custo_divida === "acima_cdi6") indice -= 6;
+    if (a.cobra_juros === "sim_misturado") indice -= 5;
+    if (a.holding === "nao") indice -= 3;
+    if (a.avaliou === "ja_tem") indice += 15;
+    indice = Math.round(clamp(indice, 8, 95));
+    const banda = indice < 40 ? { id: "critica", label: "Muito valor na mesa", tone: "danger" }
+      : indice < 60 ? { id: "relevante", label: "Valor relevante na mesa", tone: "warn" }
+      : indice < 80 ? { id: "parcial", label: "Estrutura parcial", tone: "info" }
+      : { id: "eficiente", label: "Estrutura eficiente", tone: "ok" };
+
+    return { base: b, frentes: fs, caixa, receitaAno, tributarioAno, fundingAno, anualTecnico,
+      indice, banda, totalFrentes: fs.length };
+  }
+
+  // ───────────────────────── Camada comercial (idêntica à referência) ─────────────────────────
+  // recuperar  -> caixa destravado (estoque)
+  // economizar -> novas receitas + eficiência tributária (anual)
+  // proteger   -> funding mais barato (anual)
+  function comercial(d, W) {
+    const b = d.base;
+    const M = W.MARGEM_COMERCIAL;
+    let o = d.caixa * M;
+    let s = (d.receitaAno + d.tributarioAno) * M;
+    let c = d.fundingAno * M;
+    if (d.caixa > 0) o = Math.max(o, b.base5Anos * W.PISO_RECUPERAR_PCT);
+    if (d.receitaAno + d.tributarioAno > 0) s = Math.max(s, b.baseAnual * W.PISO_ECONOMIZAR_PCT);
+    if (d.fundingAno > 0) c = Math.max(c, b.baseAnual * W.PISO_PROTEGER_PCT);
+    o = Math.min(o, b.base5Anos * W.CAP_RECUPERAR);
+    s = Math.min(s, b.baseAnual * W.CAP_ECONOMIA);
+    c = Math.min(c, b.baseAnual * W.CAP_PROTEGER);
+    const f = s * 5, p = c * 5;
+    const extras = Math.max(0, d.totalFrentes - 4);
+    const bonus = Math.min(extras * W.BONUS_POR_TESE, W.BONUS_TESE_CAP);
+    let total = (o + f + p) * (1 + bonus);
+    if (b.base5Anos > 0) total = Math.min(total, b.base5Anos * W.CAP_TOTAL_5A);
+    const piso = b.base5Anos <= 0 ? W.PISO_HERO : Math.min(W.PISO_HERO, b.base5Anos * W.CAP_TOTAL_5A);
+    if (total < piso) total = piso;
+    const maior = [["caixa", o], ["receitas", f], ["funding", p]].reduce((x, y) => (y[1] > x[1] ? y : x))[0];
+    // Distribui "economizar" entre receitas e tributário na proporção técnica
+    const shareReceita = d.receitaAno + d.tributarioAno > 0 ? d.receitaAno / (d.receitaAno + d.tributarioAno) : 0.5;
+    return {
+      caixa: o, receitasAno: s * shareReceita, tributarioAno: s * (1 - shareReceita), economizarAno: s,
+      economizarMes: s / 12, economizar5a: f, fundingAno: c, funding5a: p, total, maior, bonusTeses: bonus,
+      frentes: Math.max(d.totalFrentes, W.PISO_FRENTES)
+    };
+  }
+
+  // ───────────────────────── Lead score ─────────────────────────
+  function leadScore(a, d, contato) {
+    let s = [10, 25, 35, 40, 45][d.base.porteRank] || 10;
+    s += { ate3m: 25, "3a6": 18, "6a12": 10, pesquisando: 0 }[a.urgencia] ?? 5;
+    if (a.dor === "capital" || a.dor === "divida") s += 10;
+    if (d.base.pPrazo >= 0.35) s += 10;
+    if (d.totalFrentes >= 5) s += 5;
+    if (contato && contato.cargo && /s[oó]cio|ceo|diretor|dono|propriet|fundador|cfo|presidente/i.test(contato.cargo)) s += 5;
+    return Math.min(100, s);
+  }
+
+  function resultado(a, contato, W) {
+    const d = diagnosticar(a);
+    const comm = comercial(d, W);
+    const score = leadScore(a, d, contato);
+    const qualified = score >= W.QUAL_LEAD_SCORE && d.base.fatAno >= W.QUAL_FATURAMENTO_ANUAL;
+    return { d, comm, score, qualified };
+  }
+
+  // Arredondamento de exibição (mesmo da referência)
+  function arred(e) {
+    return !isFinite(e) || e <= 0 ? 0 : e >= 1e6 ? Math.round(e / 5e4) * 5e4 : e >= 1e5 ? Math.round(e / 1e4) * 1e4
+      : e >= 1e4 ? Math.round(e / 1e3) * 1e3 : e >= 1e3 ? Math.round(e / 100) * 100 : Math.round(e / 10) * 10;
+  }
+  function brl(v) {
+    const e = arred(v);
+    if (e >= 1e6) return "R$ " + (e / 1e6).toFixed(e >= 1e7 ? 1 : 2).replace(/\.?0+$/, "").replace(".", ",") + " mi";
+    if (e >= 1e3) return "R$ " + Math.round(e / 1e3).toLocaleString("pt-BR") + " mil";
+    return "R$ " + Math.round(e).toLocaleString("pt-BR");
+  }
+
+  const api = { Q, GROUPS, SECTOR_QS, questionFlow, baseFinanceira, frentes, diagnosticar, comercial, leadScore, resultado, brl, arred };
+  if (typeof module !== "undefined" && module.exports) module.exports = api;
+  root.SV_ENGINE = api;
+})(typeof window !== "undefined" ? window : globalThis);
+
+</script>
+  <script>
+const LOGO_DARK="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIGlkPSJDYW1hZGFfMyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMTg0LjM2IDIxLjY0Ij48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6IzA2NTE1ODt9PC9zdHlsZT48L2RlZnM+PGcgaWQ9IkNhbWFkYV8xIj48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik00LjY0LjAzYy0xLjE3LjAzLTIuNjEuNzMtMy4zNywxLjU4Qy43MiwyLjIyLDAsMy41MSwwLDQuNjJjMCwxLjA1LjM4LDIuMTEsMS4zOSwzLjE0aDBzNS45Myw1LjkyLDUuOTMsNS45MmwyLjg4LTIuODhMMy45LDQuNTJsLTEuMjctLjY2LDEuMzMuMjYsMTAuOTQtLjA3aDIuNzNzMi43OSwwLDIuNzksMGg0LjFWMFM0LjY0LjAzLDQuNjQuMDNaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTkuODYsMjEuNjJjMS4xNy0uMDMsMi42MS0uNzMsMy4zNy0xLjU4LjU1LS42MiwxLjI3LTEuOSwxLjI3LTMuMDEsMC0xLjA1LS4zOC0yLjExLTEuMzktMy4xNGgwcy01LjkzLTUuOTItNS45My01LjkybC0yLjg4LDIuODgsNi4yOSw2LjI5LDEuMjcuNjYtMS4zMy0uMjYtMTAuOTQuMDdoLTIuNzNzLTIuNzksMC0yLjc5LDBIMHY0LjA1czE5Ljg2LS4wMywxOS44Ni0uMDNaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNDMuNCwxMC40Yy0uNTUtLjMxLTEuMTQtLjU1LTEuNzgtLjctLjY0LS4xNS0xLjI2LS4yOC0xLjg2LS4zOC0uNDEtLjA3LS43OS0uMTUtMS4xNi0uMjItLjM2LS4wNy0uNjgtLjE3LS45Ni0uMjhzLS40OS0uMjctLjY1LS40Ny0uMjQtLjQ1LS4yNC0uNzdjMC0uNTQuMjQtLjk2LjcyLTEuMjcuNDgtLjMxLDEuMTYtLjQ2LDIuMDMtLjQ2Ljc3LDAsMS40NS4xMiwyLjA1LjM3LjYuMjUsMS4xNi41NSwxLjY4LjkybDEuNzUtMi4wN2MtMS41LTEuMjItMy4zMi0xLjgzLTUuNDgtMS44My0xLjE5LDAtMi4yMi4xOC0zLjA5LjU1LS44Ny4zNi0xLjUzLjg4LTIsMS41NC0uNDcuNjYtLjcsMS40NC0uNywyLjM1cy4xNiwxLjU2LjQ5LDIuMWMuMzMuNTQuNzYuOTYsMS4yOSwxLjI1czEuMTEuNTIsMS43NS42OGMuNjMuMTUsMS4yNC4yOCwxLjgyLjM4LjQyLjA3LjgyLjE1LDEuMTkuMjRzLjcuMTkuOTkuMzJjLjI5LjEyLjUyLjI5LjY5LjUuMTcuMjEuMjUuNDguMjUuODIsMCwuNTctLjI1LDEuMDItLjc1LDEuMzVzLTEuMi41LTIuMTEuNWMtLjg0LDAtMS42LS4xNS0yLjI3LS40NS0uNjctLjMtMS4yOS0uNjctMS44Ni0xLjFsLTEuNzUsMi4wN2MuOC43LDEuNjksMS4yMiwyLjY3LDEuNTcuOTguMzUsMi4wNS41MiwzLjIuNTIsMS4yMSwwLDIuMjUtLjE5LDMuMTMtLjU2Ljg4LS4zNywxLjU2LS45LDIuMDUtMS41OC40OS0uNjguNzMtMS40OS43My0yLjQycy0uMTctMS42MS0uNTEtMi4xNmMtLjM0LS41NS0uNzktLjk5LTEuMzMtMS4zWiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTU4LjA2LDQuMTNjLTEuMTEtLjYtMi40NC0uOTEtMy45OS0uOTFzLTIuODkuMy00LjAxLjkxYy0xLjExLjYtMS45NiwxLjQ3LTIuNTUsMi42MXMtLjg4LDIuNS0uODgsNC4wOC4yOSwyLjk1Ljg4LDQuMDhjLjU5LDEuMTQsMS40NCwyLDIuNTUsMi42MSwxLjExLjYsMi40NS45MSw0LjAxLjkxczIuODktLjMsMy45OS0uOTFjMS4xMS0uNiwxLjk2LTEuNDcsMi41NS0yLjYxLjYtMS4xMy44OS0yLjUuODktNC4wOHMtLjMtMi45NS0uODktNC4wOGMtLjYtMS4xNC0xLjQ1LTItMi41NS0yLjYxWk01Ny44NSwxMy40NGMtLjM0LjczLS44MywxLjI4LTEuNDcsMS42Ny0uNjQuMzktMS40MS41OC0yLjMxLjU4LTEuMzUsMC0yLjQxLS40My0zLjE2LTEuMjktLjc2LS44Ni0xLjE0LTIuMDUtMS4xNC0zLjU4LDAtMS4wMi4xNy0xLjg5LjUtMi42Mi4zMy0uNzMuODMtMS4yOSwxLjQ3LTEuNjguNjUtLjM5LDEuNDItLjU5LDIuMzItLjU5LDEuMzUsMCwyLjQxLjQzLDMuMTYsMS4zLjc2Ljg3LDEuMTMsMi4wNiwxLjEzLDMuNTksMCwxLjAyLS4xNywxLjg5LS41MSwyLjYyWiIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMSIgcG9pbnRzPSI3MS4zNSAxMC40MyA2Ni41NSAzLjQ5IDYzLjgyIDMuNDkgNjMuODIgMTguMTYgNjYuNyAxOC4xNiA2Ni43IDguMjEgNzAuNDEgMTMuNTkgNzIuMjkgMTMuNTkgNzUuOTggOC4yNCA3NS45OCAxOC4xNiA3OC44NiAxOC4xNiA3OC44NiAzLjQ5IDc2LjE1IDMuNDkgNzEuMzUgMTAuNDMiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik05Mi42MSw0LjEzYy0xLjExLS42LTIuNDQtLjkxLTMuOTktLjkxcy0yLjg5LjMtNCwuOTFjLTEuMTEuNi0xLjk2LDEuNDctMi41NSwyLjYxLS41OSwxLjE0LS44OCwyLjUtLjg4LDQuMDhzLjI5LDIuOTUuODgsNC4wOGMuNTksMS4xNCwxLjQ0LDIsMi41NSwyLjYxLDEuMTEuNiwyLjQ1LjkxLDQsLjkxczIuODktLjMsMy45OS0uOTFjMS4xMS0uNiwxLjk2LTEuNDcsMi41NS0yLjYxLjYtMS4xMy44OS0yLjUuODktNC4wOHMtLjMtMi45NS0uODktNC4wOC0xLjQ1LTItMi41NS0yLjYxWk05Mi40LDEzLjQ0Yy0uMzQuNzMtLjgzLDEuMjgtMS40NywxLjY3LS42NC4zOS0xLjQxLjU4LTIuMzEuNTgtMS4zNSwwLTIuNDEtLjQzLTMuMTYtMS4yOS0uNzYtLjg2LTEuMTMtMi4wNS0xLjEzLTMuNTgsMC0xLjAyLjE3LTEuODkuNS0yLjYyLjMzLS43My44My0xLjI5LDEuNDctMS42OC42NS0uMzksMS40Mi0uNTksMi4zMi0uNTksMS4zNSwwLDIuNDEuNDMsMy4xNiwxLjNzMS4xNCwyLjA2LDEuMTQsMy41OWMwLDEuMDItLjE3LDEuODktLjUxLDIuNjJaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTA3LjI2LDEwLjRjLS41NS0uMzEtMS4xNC0uNTUtMS43OC0uNy0uNjQtLjE1LTEuMjYtLjI4LTEuODYtLjM4LS40MS0uMDctLjc5LS4xNS0xLjE2LS4yMi0uMzYtLjA3LS42OC0uMTctLjk2LS4yOHMtLjQ5LS4yNy0uNjUtLjQ3LS4yNC0uNDUtLjI0LS43N2MwLS41NC4yNC0uOTYuNzItMS4yNy40OC0uMzEsMS4xNi0uNDYsMi4wMy0uNDYuNzcsMCwxLjQ1LjEyLDIuMDUuMzcuNi4yNSwxLjE2LjU1LDEuNjguOTJsMS43NS0yLjA3Yy0xLjUtMS4yMi0zLjMyLTEuODMtNS40OC0xLjgzLTEuMTksMC0yLjIyLjE4LTMuMDkuNTUtLjg3LjM2LTEuNTMuODgtMiwxLjU0LS40Ny42Ni0uNywxLjQ0LS43LDIuMzVzLjE2LDEuNTYuNDksMi4xYy4zMy41NC43Ni45NiwxLjI5LDEuMjVzMS4xMS41MiwxLjc1LjY4Yy42My4xNSwxLjI0LjI4LDEuODIuMzguNDIuMDcuODIuMTUsMS4xOS4yNHMuNy4xOS45OS4zMmMuMjkuMTIuNTIuMjkuNjkuNS4xNy4yMS4yNS40OC4yNS44MiwwLC41Ny0uMjUsMS4wMi0uNzUsMS4zNXMtMS4yLjUtMi4xMS41Yy0uODQsMC0xLjYtLjE1LTIuMjctLjQ1LS42Ny0uMy0xLjI5LS42Ny0xLjg2LTEuMWwtMS43NSwyLjA3Yy44LjcsMS42OSwxLjIyLDIuNjcsMS41Ny45OC4zNSwyLjA1LjUyLDMuMi41MiwxLjIxLDAsMi4yNS0uMTksMy4xMy0uNTYuODgtLjM3LDEuNTYtLjksMi4wNS0xLjU4LjQ5LS42OC43My0xLjQ5LjczLTIuNDJzLS4xNy0xLjYxLS41MS0yLjE2Yy0uMzQtLjU1LS43OS0uOTktMS4zMy0xLjNaIi8+PHBvbHlnb24gY2xhc3M9ImNscy0xIiBwb2ludHM9IjEyNi4xNyAzLjQ5IDEyMi4wOSAxNC41MSAxMTguMDMgMy40OSAxMTQuOCAzLjQ5IDEyMC41NiAxOC4xNiAxMjMuNjIgMTguMTYgMTI5LjQgMy40OSAxMjYuMTcgMy40OSIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTEzMy45NCwzLjQ5bC02LjAyLDE0LjY3aDMuMTZsMS4yNy0zLjNoNi4yNWwxLjI4LDMuM2gzLjE2bC02LjA1LTE0LjY3aC0zLjA2Wk0xMzMuMzEsMTIuMzlsMi4xNi01LjYxLDIuMTcsNS42MWgtNC4zNFoiLz48cG9seWdvbiBjbGFzcz0iY2xzLTEiIHBvaW50cz0iMTQ3Ljg5IDMuNDkgMTQ0LjgzIDMuNDkgMTQ0LjgzIDE4LjE2IDE1NC40OCAxOC4xNiAxNTQuNDggMTUuNTQgMTQ3Ljg5IDE1LjU0IDE0Ny44OSAzLjQ5Ii8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTY2Ljc5LDQuMTNjLTEuMTEtLjYtMi40NC0uOTEtMy45OS0uOTFzLTIuODkuMy00LC45MWMtMS4xMS42LTEuOTYsMS40Ny0yLjU1LDIuNjEtLjU5LDEuMTQtLjg4LDIuNS0uODgsNC4wOHMuMjksMi45NS44OCw0LjA4Yy41OSwxLjE0LDEuNDQsMiwyLjU1LDIuNjEsMS4xMS42LDIuNDUuOTEsNCwuOTFzMi44OS0uMywzLjk5LS45MWMxLjExLS42LDEuOTYtMS40NywyLjU1LTIuNjEuNi0xLjEzLjg5LTIuNS44OS00LjA4cy0uMy0yLjk1LS44OS00LjA4LTEuNDUtMi0yLjU1LTIuNjFaTTE2Ni41OCwxMy40NGMtLjM0LjczLS44MywxLjI4LTEuNDcsMS42Ny0uNjQuMzktMS40MS41OC0yLjMxLjU4LTEuMzUsMC0yLjQxLS40My0zLjE2LTEuMjktLjc2LS44Ni0xLjEzLTIuMDUtMS4xMy0zLjU4LDAtMS4wMi4xNy0xLjg5LjUtMi42Mi4zMy0uNzMuODMtMS4yOSwxLjQ3LTEuNjguNjUtLjM5LDEuNDItLjU5LDIuMzItLjU5LDEuMzUsMCwyLjQxLjQzLDMuMTYsMS4zczEuMTQsMi4wNiwxLjE0LDMuNTljMCwxLjAyLS4xNywxLjg5LS41MSwyLjYyWiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE4MC45MSwxOC4xNmgzLjQ1bC0zLjc1LTUuNWMuMzUtLjA5LjY4LS4yLjk4LS4zNC43Ny0uMzcsMS4zNi0uOTEsMS43OC0xLjYuNDEtLjcuNjItMS41NC42Mi0yLjUzLDAtMS41My0uNDUtMi42OS0xLjM0LTMuNDktLjg5LS44LTIuMTYtMS4yLTMuNzktMS4yaC02LjMxdjE0LjY3aDIuOTd2LTUuMjhoMS45NWwzLjQ0LDUuMjhaTTE3NS41Miw2LjA0aDMuMDhjLjc0LDAsMS4zMi4xOSwxLjcyLjU2cy42MS45LjYxLDEuNTgtLjIsMS4yMy0uNjEsMS42LS45OC41Ni0xLjcyLjU2aC0zLjA4di00LjNaIi8+PC9nPjwvc3ZnPg==",LOGO_LIGHT="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIGlkPSJDYW1hZGFfMyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMTg0LjM2IDIxLjY0Ij48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9PC9zdHlsZT48L2RlZnM+PGcgaWQ9IkNhbWFkYV8xIj48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik00LjY0LjAzYy0xLjE3LjAzLTIuNjEuNzMtMy4zNywxLjU4Qy43MiwyLjIyLDAsMy41MSwwLDQuNjJjMCwxLjA1LjM4LDIuMTEsMS4zOSwzLjE0aDBzNS45Myw1LjkyLDUuOTMsNS45MmwyLjg4LTIuODhMMy45LDQuNTJsLTEuMjctLjY2LDEuMzMuMjYsMTAuOTQtLjA3aDIuNzNzMi43OSwwLDIuNzksMGg0LjFWMFM0LjY0LjAzLDQuNjQuMDNaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTkuODYsMjEuNjJjMS4xNy0uMDMsMi42MS0uNzMsMy4zNy0xLjU4LjU1LS42MiwxLjI3LTEuOSwxLjI3LTMuMDEsMC0xLjA1LS4zOC0yLjExLTEuMzktMy4xNGgwcy01LjkzLTUuOTItNS45My01LjkybC0yLjg4LDIuODgsNi4yOSw2LjI5LDEuMjcuNjYtMS4zMy0uMjYtMTAuOTQuMDdoLTIuNzNzLTIuNzksMC0yLjc5LDBIMHY0LjA1czE5Ljg2LS4wMywxOS44Ni0uMDNaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNDMuNCwxMC40Yy0uNTUtLjMxLTEuMTQtLjU1LTEuNzgtLjctLjY0LS4xNS0xLjI2LS4yOC0xLjg2LS4zOC0uNDEtLjA3LS43OS0uMTUtMS4xNi0uMjItLjM2LS4wNy0uNjgtLjE3LS45Ni0uMjhzLS40OS0uMjctLjY1LS40Ny0uMjQtLjQ1LS4yNC0uNzdjMC0uNTQuMjQtLjk2LjcyLTEuMjcuNDgtLjMxLDEuMTYtLjQ2LDIuMDMtLjQ2Ljc3LDAsMS40NS4xMiwyLjA1LjM3LjYuMjUsMS4xNi41NSwxLjY4LjkybDEuNzUtMi4wN2MtMS41LTEuMjItMy4zMi0xLjgzLTUuNDgtMS44My0xLjE5LDAtMi4yMi4xOC0zLjA5LjU1LS44Ny4zNi0xLjUzLjg4LTIsMS41NC0uNDcuNjYtLjcsMS40NC0uNywyLjM1cy4xNiwxLjU2LjQ5LDIuMWMuMzMuNTQuNzYuOTYsMS4yOSwxLjI1czEuMTEuNTIsMS43NS42OGMuNjMuMTUsMS4yNC4yOCwxLjgyLjM4LjQyLjA3LjgyLjE1LDEuMTkuMjRzLjcuMTkuOTkuMzJjLjI5LjEyLjUyLjI5LjY5LjUuMTcuMjEuMjUuNDguMjUuODIsMCwuNTctLjI1LDEuMDItLjc1LDEuMzVzLTEuMi41LTIuMTEuNWMtLjg0LDAtMS42LS4xNS0yLjI3LS40NS0uNjctLjMtMS4yOS0uNjctMS44Ni0xLjFsLTEuNzUsMi4wN2MuOC43LDEuNjksMS4yMiwyLjY3LDEuNTcuOTguMzUsMi4wNS41MiwzLjIuNTIsMS4yMSwwLDIuMjUtLjE5LDMuMTMtLjU2Ljg4LS4zNywxLjU2LS45LDIuMDUtMS41OC40OS0uNjguNzMtMS40OS43My0yLjQycy0uMTctMS42MS0uNTEtMi4xNmMtLjM0LS41NS0uNzktLjk5LTEuMzMtMS4zWiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTU4LjA2LDQuMTNjLTEuMTEtLjYtMi40NC0uOTEtMy45OS0uOTFzLTIuODkuMy00LjAxLjkxYy0xLjExLjYtMS45NiwxLjQ3LTIuNTUsMi42MXMtLjg4LDIuNS0uODgsNC4wOC4yOSwyLjk1Ljg4LDQuMDhjLjU5LDEuMTQsMS40NCwyLDIuNTUsMi42MSwxLjExLjYsMi40NS45MSw0LjAxLjkxczIuODktLjMsMy45OS0uOTFjMS4xMS0uNiwxLjk2LTEuNDcsMi41NS0yLjYxLjYtMS4xMy44OS0yLjUuODktNC4wOHMtLjMtMi45NS0uODktNC4wOGMtLjYtMS4xNC0xLjQ1LTItMi41NS0yLjYxWk01Ny44NSwxMy40NGMtLjM0LjczLS44MywxLjI4LTEuNDcsMS42Ny0uNjQuMzktMS40MS41OC0yLjMxLjU4LTEuMzUsMC0yLjQxLS40My0zLjE2LTEuMjktLjc2LS44Ni0xLjE0LTIuMDUtMS4xNC0zLjU4LDAtMS4wMi4xNy0xLjg5LjUtMi42Mi4zMy0uNzMuODMtMS4yOSwxLjQ3LTEuNjguNjUtLjM5LDEuNDItLjU5LDIuMzItLjU5LDEuMzUsMCwyLjQxLjQzLDMuMTYsMS4zLjc2Ljg3LDEuMTMsMi4wNiwxLjEzLDMuNTksMCwxLjAyLS4xNywxLjg5LS41MSwyLjYyWiIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMSIgcG9pbnRzPSI3MS4zNSAxMC40MyA2Ni41NSAzLjQ5IDYzLjgyIDMuNDkgNjMuODIgMTguMTYgNjYuNyAxOC4xNiA2Ni43IDguMjEgNzAuNDEgMTMuNTkgNzIuMjkgMTMuNTkgNzUuOTggOC4yNCA3NS45OCAxOC4xNiA3OC44NiAxOC4xNiA3OC44NiAzLjQ5IDc2LjE1IDMuNDkgNzEuMzUgMTAuNDMiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik05Mi42MSw0LjEzYy0xLjExLS42LTIuNDQtLjkxLTMuOTktLjkxcy0yLjg5LjMtNCwuOTFjLTEuMTEuNi0xLjk2LDEuNDctMi41NSwyLjYxLS41OSwxLjE0LS44OCwyLjUtLjg4LDQuMDhzLjI5LDIuOTUuODgsNC4wOGMuNTksMS4xNCwxLjQ0LDIsMi41NSwyLjYxLDEuMTEuNiwyLjQ1LjkxLDQsLjkxczIuODktLjMsMy45OS0uOTFjMS4xMS0uNiwxLjk2LTEuNDcsMi41NS0yLjYxLjYtMS4xMy44OS0yLjUuODktNC4wOHMtLjMtMi45NS0uODktNC4wOC0xLjQ1LTItMi41NS0yLjYxWk05Mi40LDEzLjQ0Yy0uMzQuNzMtLjgzLDEuMjgtMS40NywxLjY3LS42NC4zOS0xLjQxLjU4LTIuMzEuNTgtMS4zNSwwLTIuNDEtLjQzLTMuMTYtMS4yOS0uNzYtLjg2LTEuMTMtMi4wNS0xLjEzLTMuNTgsMC0xLjAyLjE3LTEuODkuNS0yLjYyLjMzLS43My44My0xLjI5LDEuNDctMS42OC42NS0uMzksMS40Mi0uNTksMi4zMi0uNTksMS4zNSwwLDIuNDEuNDMsMy4xNiwxLjNzMS4xNCwyLjA2LDEuMTQsMy41OWMwLDEuMDItLjE3LDEuODktLjUxLDIuNjJaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTA3LjI2LDEwLjRjLS41NS0uMzEtMS4xNC0uNTUtMS43OC0uNy0uNjQtLjE1LTEuMjYtLjI4LTEuODYtLjM4LS40MS0uMDctLjc5LS4xNS0xLjE2LS4yMi0uMzYtLjA3LS42OC0uMTctLjk2LS4yOHMtLjQ5LS4yNy0uNjUtLjQ3LS4yNC0uNDUtLjI0LS43N2MwLS41NC4yNC0uOTYuNzItMS4yNy40OC0uMzEsMS4xNi0uNDYsMi4wMy0uNDYuNzcsMCwxLjQ1LjEyLDIuMDUuMzcuNi4yNSwxLjE2LjU1LDEuNjguOTJsMS43NS0yLjA3Yy0xLjUtMS4yMi0zLjMyLTEuODMtNS40OC0xLjgzLTEuMTksMC0yLjIyLjE4LTMuMDkuNTUtLjg3LjM2LTEuNTMuODgtMiwxLjU0LS40Ny42Ni0uNywxLjQ0LS43LDIuMzVzLjE2LDEuNTYuNDksMi4xYy4zMy41NC43Ni45NiwxLjI5LDEuMjVzMS4xMS41MiwxLjc1LjY4Yy42My4xNSwxLjI0LjI4LDEuODIuMzguNDIuMDcuODIuMTUsMS4xOS4yNHMuNy4xOS45OS4zMmMuMjkuMTIuNTIuMjkuNjkuNS4xNy4yMS4yNS40OC4yNS44MiwwLC41Ny0uMjUsMS4wMi0uNzUsMS4zNXMtMS4yLjUtMi4xMS41Yy0uODQsMC0xLjYtLjE1LTIuMjctLjQ1LS42Ny0uMy0xLjI5LS42Ny0xLjg2LTEuMWwtMS43NSwyLjA3Yy44LjcsMS42OSwxLjIyLDIuNjcsMS41Ny45OC4zNSwyLjA1LjUyLDMuMi41MiwxLjIxLDAsMi4yNS0uMTksMy4xMy0uNTYuODgtLjM3LDEuNTYtLjksMi4wNS0xLjU4LjQ5LS42OC43My0xLjQ5LjczLTIuNDJzLS4xNy0xLjYxLS41MS0yLjE2Yy0uMzQtLjU1LS43OS0uOTktMS4zMy0xLjNaIi8+PHBvbHlnb24gY2xhc3M9ImNscy0xIiBwb2ludHM9IjEyNi4xNyAzLjQ5IDEyMi4wOSAxNC41MSAxMTguMDMgMy40OSAxMTQuOCAzLjQ5IDEyMC41NiAxOC4xNiAxMjMuNjIgMTguMTYgMTI5LjQgMy40OSAxMjYuMTcgMy40OSIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTEzMy45NCwzLjQ5bC02LjAyLDE0LjY3aDMuMTZsMS4yNy0zLjNoNi4yNWwxLjI4LDMuM2gzLjE2bC02LjA1LTE0LjY3aC0zLjA2Wk0xMzMuMzEsMTIuMzlsMi4xNi01LjYxLDIuMTcsNS42MWgtNC4zNFoiLz48cG9seWdvbiBjbGFzcz0iY2xzLTEiIHBvaW50cz0iMTQ3Ljg5IDMuNDkgMTQ0LjgzIDMuNDkgMTQ0LjgzIDE4LjE2IDE1NC40OCAxOC4xNiAxNTQuNDggMTUuNTQgMTQ3Ljg5IDE1LjU0IDE0Ny44OSAzLjQ5Ii8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTY2Ljc5LDQuMTNjLTEuMTEtLjYtMi40NC0uOTEtMy45OS0uOTFzLTIuODkuMy00LC45MWMtMS4xMS42LTEuOTYsMS40Ny0yLjU1LDIuNjEtLjU5LDEuMTQtLjg4LDIuNS0uODgsNC4wOHMuMjksMi45NS44OCw0LjA4Yy41OSwxLjE0LDEuNDQsMiwyLjU1LDIuNjEsMS4xMS42LDIuNDUuOTEsNCwuOTFzMi44OS0uMywzLjk5LS45MWMxLjExLS42LDEuOTYtMS40NywyLjU1LTIuNjEuNi0xLjEzLjg5LTIuNS44OS00LjA4cy0uMy0yLjk1LS44OS00LjA4LTEuNDUtMi0yLjU1LTIuNjFaTTE2Ni41OCwxMy40NGMtLjM0LjczLS44MywxLjI4LTEuNDcsMS42Ny0uNjQuMzktMS40MS41OC0yLjMxLjU4LTEuMzUsMC0yLjQxLS40My0zLjE2LTEuMjktLjc2LS44Ni0xLjEzLTIuMDUtMS4xMy0zLjU4LDAtMS4wMi4xNy0xLjg5LjUtMi42Mi4zMy0uNzMuODMtMS4yOSwxLjQ3LTEuNjguNjUtLjM5LDEuNDItLjU5LDIuMzItLjU5LDEuMzUsMCwyLjQxLjQzLDMuMTYsMS4zczEuMTQsMi4wNiwxLjE0LDMuNTljMCwxLjAyLS4xNywxLjg5LS41MSwyLjYyWiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE4MC45MSwxOC4xNmgzLjQ1bC0zLjc1LTUuNWMuMzUtLjA5LjY4LS4yLjk4LS4zNC43Ny0uMzcsMS4zNi0uOTEsMS43OC0xLjYuNDEtLjcuNjItMS41NC42Mi0yLjUzLDAtMS41My0uNDUtMi42OS0xLjM0LTMuNDktLjg5LS44LTIuMTYtMS4yLTMuNzktMS4yaC02LjMxdjE0LjY3aDIuOTd2LTUuMjhoMS45NWwzLjQ0LDUuMjhaTTE3NS41Miw2LjA0aDMuMDhjLjc0LDAsMS4zMi4xOSwxLjcyLjU2cy42MS45LjYxLDEuNTgtLjIsMS4yMy0uNjEsMS42LS45OC41Ni0xLjcyLjU2aC0zLjA4di00LjNaIi8+PC9nPjwvc3ZnPg==";
+(function () {
+  "use strict";
+  const CFG = window.SV_CONFIG;
+  const E = window.SV_ENGINE;
+  const W = CFG.comercial;
+  const app = document.getElementById("app");
+  const STORE = "sv_diag_v1";
+
+  // ───────────────────────── Estado ─────────────────────────
+  const blank = () => ({ answers: {}, contato: {}, submissionId: uid(), utm: {}, startedAt: null, leadSent: false });
+  let S = load() || blank();
+
+  function uid() { return "sv_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
+  function load() { try { return JSON.parse(sessionStorage.getItem(STORE)); } catch (e) { return null; } }
+  function save() { try { sessionStorage.setItem(STORE, JSON.stringify(S)); } catch (e) { /* sem storage */ } }
+
+  // UTMs da URL (persistem na sessão)
+  (function captureUtm() {
+    try {
+      const p = new URLSearchParams(location.search);
+      ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "fbclid", "gclid"].forEach(k => {
+        const v = p.get(k); if (v) S.utm[k] = v;
+      });
+      if (document.referrer && !S.utm.referrer) S.utm.referrer = document.referrer;
+      save();
+    } catch (e) { /* ok */ }
+  })();
+
+  // ───────────────────────── Tracking ─────────────────────────
+  const PIXEL_MAP = { lead_captured: "Lead", result_viewed: "ViewContent", whatsapp_click: "Contact", wizard_start: null };
+  (function loadPixel() {
+    if (!CFG.metaPixelId) return;
+    /* eslint-disable */
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    /* eslint-enable */
+    window.fbq("init", CFG.metaPixelId);
+    window.fbq("track", "PageView");
+  })();
+
+  function track(event, props) {
+    const payload = Object.assign({ event, submissionId: S.submissionId, ts: new Date().toISOString(), path: location.hash || "/" }, props || {});
+    try { (window.dataLayer = window.dataLayer || []).push(payload); } catch (e) { /* ok */ }
+    try {
+      if (window.fbq) {
+        const std = PIXEL_MAP[event];
+        if (std) window.fbq("track", std, props || {}, { eventID: S.submissionId + "_" + event });
+        window.fbq("trackCustom", "SV_" + event, props || {});
+      }
+    } catch (e) { /* ok */ }
+    post({ type: "event", utm: S.utm, ...payload });
+  }
+  function post(body) {
+    if (!CFG.webhookUrl) return;
+    try {
+      fetch(CFG.webhookUrl, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), keepalive: true }).catch(() => {});
+    } catch (e) { /* ok */ }
+  }
+
+  // ───────────────────────── Utilidades ─────────────────────────
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const brl = E.brl;
+  const icon = {
+    check: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+    clock: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+    lock: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+    spark: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8L20 10.7l-5 3.8 1.8 6.1L12 17l-4.8 3.6 1.8-6.1-5-3.8 6.1-1.9z"/></svg>',
+    cash: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>',
+    up: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>',
+    shield: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+    wa: '<svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 2.5 1 3 .8 3.6.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>',
+    arrow: '<span aria-hidden="true">→</span>',
+    bank: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"/><path d="M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18"/></svg>'
+  };
+  const logo = (dark) => `<img class="logo" src="${dark ? LOGO_DARK : LOGO_LIGHT}" alt="Somos Valor" />`;
+  const go = h => { location.hash = h; };
+
+  // ───────────────────────── Roteamento ─────────────────────────
+  window.addEventListener("hashchange", route);
+  function route() {
+    const h = location.hash || "#/";
+    window.scrollTo(0, 0);
+    cleanupResult();
+    if (h.startsWith("#/p/")) return renderQuestion(parseInt(h.slice(4), 10) || 1);
+    if (h === "#/contato") return renderContato();
+    if (h === "#/analisando") return renderAnalisando();
+    if (h === "#/resultado") return renderResultado();
+    return renderIntro();
+  }
+
+  function shell(inner, tag) {
+    document.body.className = "";
+    app.innerHTML = `<div class="shell"><div class="wrap"><header class="topbar">${logo(false)}<span class="tag">${tag || "Diagnóstico de Valor Financeiro"}</span></header></div><main class="stage"><div class="wrap">${inner}</div></main></div>`;
+  }
+
+  // ───────────────────────── Intro ─────────────────────────
+  function renderIntro() {
+    shell(`
+      <section class="intro">
+        <span class="pill"><span class="dot"></span>Diagnóstico interativo</span>
+        <h1>Descubra quanto dinheiro <span class="hl">está parado dentro da sua empresa</span></h1>
+        <p class="lead">Em 2 minutos, você vê quanto caixa está preso em recebíveis, quanto de receita financeira hoje fica com o banco e quanto dá para economizar em imposto e juros.</p>
+        <div class="badges">
+          <span>${icon.clock} ≈ 2 minutos</span><span>${icon.lock} Dados confidenciais</span><span>${icon.spark} Sem cadastro para começar</span>
+        </div>
+        <button class="btn btn-primary" id="start">Começar diagnóstico ${icon.arrow}</button>
+        <div class="motors">
+          <div class="motor-mini"><span class="n">01 · Caixa</span><b>Caixa parado</b><p>Recebíveis que podem virar caixa no dia zero, sem dívida.</p></div>
+          <div class="motor-mini"><span class="n">02 · Receitas e impostos</span><b>Valor que vai pro banco</b><p>Deságio, juros e tributos que podem ficar com os sócios.</p></div>
+          <div class="motor-mini"><span class="n">03 · Funding</span><b>Capital mais barato</b><p>Autonomia para financiar a operação sem depender de banco.</p></div>
+        </div>
+      </section>`);
+    document.getElementById("start").onclick = () => {
+      if (!S.startedAt) { S.startedAt = Date.now(); save(); track("wizard_start"); }
+      go("#/p/1");
+    };
+    if (!S._pv) { S._pv = 1; save(); track("page_view"); }
+  }
+
+  // ───────────────────────── Perguntas ─────────────────────────
+  function flow() { return E.questionFlow(S.answers).filter(id => id !== "__setor_placeholder"); }
+
+  function progressHtml(qid) {
+    const f = E.questionFlow(S.answers);
+    const q = E.Q[qid];
+    return `<div class="progress"><div class="progress-groups">${E.GROUPS.map(g => {
+      const inG = f.filter(id => (id === "__setor_placeholder" ? "setor" : E.Q[id].group) === g.id);
+      const answered = inG.filter(id => id !== "__setor_placeholder" && S.answers[id] != null).length;
+      const pct = inG.length ? Math.round((answered / inG.length) * 100) : 0;
+      return `<div class="g ${g.id === q.group ? "on" : ""}"><div class="bar"><i style="width:${pct}%"></i></div><div class="lbl">${g.label}</div></div>`;
+    }).join("")}</div></div>`;
+  }
+
+  function signals() {
+    const a = S.answers, out = [];
+    if (a.antecipa === "todo_mes") out.push("Deságio recorrente indo para o banco");
+    if (["50a80", "acima80"].includes(a.vendas_prazo)) out.push("Carteira de recebíveis relevante");
+    if (a.cobra_juros === "sim_misturado") out.push("PIS/COFINS sobre juros detectado");
+    if (a.custo_divida === "acima_cdi6") out.push("Funding acima do custo estruturado");
+    if (a.fornecedores === "sim_bom") out.push("Spread com fornecedores disponível");
+    if (["20a40", "40a100", "acima100"].includes(a.faturamento)) out.push("Porte compatível com FIDC próprio");
+    return out.slice(-3);
+  }
+
+  function renderQuestion(n) {
+    const f = flow();
+    if (!S.startedAt) { S.startedAt = Date.now(); save(); track("wizard_start"); }
+    if (n > f.length) return go("#/contato");
+    const qid = f[n - 1];
+    const q = E.Q[qid];
+    const sel = S.answers[qid];
+    const cols = q.options.length >= 4 && q.options.every(o => !o.description && o.label.length < 34) && q.options.length % 2 === 0 ? "cols-2" : "";
+    const sig = signals();
+    shell(`
+      ${progressHtml(qid)}
+      <button class="back" id="back" ${n === 1 ? "" : ""}>← Voltar</button>
+      <div class="q-head" data-q="${qid}">
+        <span class="kicker">${esc(q.category)}</span>
+        <h1>${esc(q.title)}</h1>
+        ${q.helper ? `<p class="helper">${esc(q.helper)}</p>` : ""}
+      </div>
+      <div class="options ${cols}" role="radiogroup" aria-label="${esc(q.title)}">
+        ${q.options.map(o => `<button type="button" role="radio" aria-checked="${sel === o.id}" class="opt ${sel === o.id ? "on" : ""}" data-id="${o.id}">
+            <span class="radio">${sel === o.id ? icon.check : ""}</span>
+            <span><span class="t">${esc(o.label)}</span>${o.description ? `<span class="d">${esc(o.description)}</span>` : ""}</span>
+            <span class="sel">Selecionado</span></button>`).join("")}
+      </div>
+      ${q.allowExact ? `<div class="exact"><label for="exact">Prefere informar o faturamento médio mensal exato? (opcional)</label>
+        <div class="money"><span>R$</span><input class="input" id="exact" inputmode="numeric" placeholder="Ex.: 2.500.000" value="${S.answers.faturamentoNum ? S.answers.faturamentoNum.toLocaleString("pt-BR") : ""}" /></div></div>` : ""}
+      <div class="signals">${sig.map(s => `<span class="signal">${icon.spark} ${esc(s)}</span>`).join("")}</div>
+      <div class="q-foot">
+        <span class="meta">Pergunta ${n} de ${f.length} · dados usados apenas para o seu diagnóstico</span>
+        <button class="btn btn-primary" id="next" ${sel ? "" : "disabled"}>${n === f.length ? "Ver meu diagnóstico" : "Próxima"} ${icon.arrow}</button>
+      </div>`);
+
+    document.getElementById("back").onclick = () => (n === 1 ? go("#/") : go("#/p/" + (n - 1)));
+    const next = () => {
+      if (!S.answers[qid]) return;
+      const opt = q.options.find(o => o.id === S.answers[qid]);
+      track("step_completed", { step: n, question: qid, answer: opt ? opt.label : S.answers[qid] });
+      const nf = flow();
+      go(n >= nf.length ? "#/contato" : "#/p/" + (n + 1));
+    };
+    app.querySelectorAll(".opt").forEach(b => b.onclick = () => {
+      S.answers[qid] = b.dataset.id;
+      // Ao trocar de setor, limpa respostas setoriais antigas
+      if (qid === "setor") Object.keys(E.SECTOR_QS).forEach(k => { if (k !== b.dataset.id) E.SECTOR_QS[k].forEach(id => delete S.answers[id]); });
+      save();
+      app.querySelectorAll(".opt").forEach(x => { const on = x === b; x.classList.toggle("on", on); x.setAttribute("aria-checked", on); x.querySelector(".radio").innerHTML = on ? icon.check : ""; });
+      document.getElementById("next").disabled = false;
+      if (!q.allowExact) setTimeout(next, 260);
+    });
+    const ex = document.getElementById("exact");
+    if (ex) ex.oninput = () => {
+      const digits = ex.value.replace(/\D/g, "");
+      const v = digits ? parseInt(digits, 10) : 0;
+      ex.value = v ? v.toLocaleString("pt-BR") : "";
+      S.answers.faturamentoNum = v;
+      if (v > 0) {
+        const anual = v * 12;
+        S.answers.faturamento = anual <= 5e6 ? "ate5" : anual <= 20e6 ? "5a20" : anual <= 40e6 ? "20a40" : anual <= 100e6 ? "40a100" : "acima100";
+        app.querySelectorAll(".opt").forEach(x => { const on = x.dataset.id === S.answers.faturamento; x.classList.toggle("on", on); x.querySelector(".radio").innerHTML = on ? icon.check : ""; });
+        document.getElementById("next").disabled = false;
+      }
+      save();
+    };
+    document.getElementById("next").onclick = next;
+  }
+
+  // ───────────────────────── Captura de lead ─────────────────────────
+  function cnpjValido(c) {
+    c = c.replace(/\D/g, "");
+    if (c.length !== 14 || /^(\d)\1+$/.test(c)) return false;
+    const calc = len => { let s = 0, p = len - 7; for (let i = 0; i < len; i++) { s += +c[i] * p--; if (p < 2) p = 9; } const r = s % 11; return r < 2 ? 0 : 11 - r; };
+    return calc(12) === +c[12] && calc(13) === +c[13];
+  }
+  const maskCnpj = v => v.replace(/\D/g, "").slice(0, 14).replace(/^(\d{2})(\d)/, "$1.$2").replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3").replace(/\.(\d{3})(\d)/, ".$1/$2").replace(/(\d{4})(\d)/, "$1-$2");
+  const maskFone = v => { const d = v.replace(/\D/g, "").slice(0, 11); return d.length <= 10 ? d.replace(/^(\d{2})(\d{0,4})(\d{0,4}).*/, (m, a, b, c) => (a ? `(${a}` : "") + (a.length === 2 ? ") " : "") + b + (c ? "-" + c : "")) : d.replace(/^(\d{2})(\d{5})(\d{4})/, "($1) $2-$3"); };
+  // "COMERCIAL XYZ LTDA" -> "Comercial Xyz", curto o bastante para caber num título
+  function nomeEmpresa(n) {
+    const minus = ["de", "da", "do", "das", "dos", "e"];
+    let s = n.replace(/\s+(LTDA|S\/?A|EIRELI|ME|EPP|MEI)\.?$/i, "").trim();
+    if (s === s.toUpperCase()) s = s.toLowerCase().split(/\s+/).map((w, i) => (i && minus.includes(w) ? w : w.charAt(0).toUpperCase() + w.slice(1))).join(" ");
+    return s.length > 38 ? s.slice(0, 36).replace(/\s+\S*$/, "") + "…" : s;
+  }
+  const emailOk = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+  const foneOk = v => v.replace(/\D/g, "").length >= 10;
+
+  function renderContato() {
+    if (flow().some(id => !S.answers[id])) return go("#/p/1");
+    const c = S.contato;
+    shell(`
+      <div class="q-head">
+        <span class="kicker">Seu diagnóstico está pronto</span>
+        <h1>Para quem enviamos o resultado?</h1>
+        <p class="helper">Cruzamos ${flow().length} respostas com o seu setor e regime. Informe seus dados para liberar o diagnóstico completo.</p>
+      </div>
+      <form class="form-card" id="lead" novalidate>
+        <div class="field"><label for="nome">Nome completo</label><input class="input" id="nome" autocomplete="name" value="${esc(c.nome)}" /><span class="hint" id="h-nome"></span></div>
+        <div class="grid-2">
+          <div class="field"><label for="whatsapp">WhatsApp</label><input class="input" id="whatsapp" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000" value="${esc(c.whatsapp)}" /><span class="hint" id="h-whatsapp"></span></div>
+          <div class="field"><label for="email">E-mail</label><input class="input" id="email" type="email" autocomplete="email" value="${esc(c.email)}" /><span class="hint" id="h-email"></span></div>
+        </div>
+        <div class="grid-2">
+          <div class="field"><label for="cnpj">CNPJ</label><input class="input" id="cnpj" inputmode="numeric" placeholder="00.000.000/0000-00" value="${esc(c.cnpj)}" /><span class="hint" id="h-cnpj">${c.empresa ? esc(c.empresa) : ""}</span></div>
+          <div class="field"><label for="cargo">Cargo (opcional)</label><input class="input" id="cargo" autocomplete="organization-title" placeholder="Ex.: Sócio, CFO" value="${esc(c.cargo)}" /><span class="hint"></span></div>
+        </div>
+        <button class="btn btn-primary btn-block" type="submit" id="go">Ver meu diagnóstico ${icon.arrow}</button>
+        <p class="fine">${icon.lock} Confidencial. Ao continuar, você concorda com a <a href="${esc(CFG.privacyUrl)}" target="_blank" rel="noopener">política de privacidade</a>. Usamos seus dados apenas para este diagnóstico.</p>
+      </form>
+      <div style="text-align:center;margin-top:16px"><button class="back" id="back">← Revisar respostas</button></div>`, "Último passo");
+
+    const $ = id => document.getElementById(id);
+    $("back").onclick = () => go("#/p/" + flow().length);
+    $("whatsapp").oninput = e => { e.target.value = maskFone(e.target.value); };
+    let lastCnpj = "";
+    $("cnpj").oninput = e => {
+      e.target.value = maskCnpj(e.target.value);
+      const d = e.target.value.replace(/\D/g, "");
+      const h = $("h-cnpj");
+      if (d.length < 14) { h.textContent = ""; h.className = "hint"; S.contato.empresa = ""; return; }
+      if (!cnpjValido(d)) { h.textContent = "CNPJ inválido"; h.className = "hint bad"; return; }
+      if (d === lastCnpj) return;
+      lastCnpj = d; h.textContent = "Consultando CNPJ…"; h.className = "hint";
+      fetch("https://brasilapi.com.br/api/cnpj/v1/" + d).then(r => (r.ok ? r.json() : Promise.reject(r.status))).then(j => {
+        const nome = nomeEmpresa(j.nome_fantasia || j.razao_social || "");
+        S.contato.empresa = nome; S.contato.razao_social = j.razao_social || ""; S.contato.uf = j.uf || ""; S.contato.cnae = j.cnae_fiscal_descricao || "";
+        h.textContent = nome ? "✓ " + nome : "CNPJ válido"; h.className = "hint ok"; save();
+        track("cnpj_lookup", { found: !!nome, uf: j.uf || null });
+      }).catch(() => { h.textContent = "CNPJ válido"; h.className = "hint ok"; });
+    };
+    $("lead").onsubmit = ev => {
+      ev.preventDefault();
+      const v = { nome: $("nome").value.trim(), whatsapp: $("whatsapp").value.trim(), email: $("email").value.trim(), cnpj: $("cnpj").value.trim(), cargo: $("cargo").value.trim() };
+      const errs = {
+        nome: v.nome.split(/\s+/).length < 2 ? "Informe nome e sobrenome" : "",
+        whatsapp: !foneOk(v.whatsapp) ? "WhatsApp com DDD" : "",
+        email: !emailOk(v.email) ? "E-mail inválido" : "",
+        cnpj: !cnpjValido(v.cnpj) ? "CNPJ inválido" : ""
+      };
+      let ok = true;
+      Object.keys(errs).forEach(k => { $(k).classList.toggle("err", !!errs[k]); if (errs[k]) { ok = false; const h = $("h-" + k); h.textContent = errs[k]; h.className = "hint bad"; } });
+      if (!ok) return;
+      Object.assign(S.contato, v);
+      save();
+      track("contact_valid");
+      sendLead();
+      go("#/analisando");
+    };
+  }
+
+  function sendLead() {
+    const r = E.resultado(S.answers, S.contato, W);
+    const lead = {
+      type: "lead", submissionId: S.submissionId, ts: new Date().toISOString(), utm: S.utm,
+      contato: S.contato, respostas: S.answers,
+      resultado: {
+        indice: r.d.indice, banda: r.d.banda.label, frentes: r.d.frentes.map(f => f.code + " " + f.rotulo),
+        exibido: { total5a: Math.round(r.comm.total), caixa: Math.round(r.comm.caixa), economizarAno: Math.round(r.comm.economizarAno), fundingAno: Math.round(r.comm.fundingAno) },
+        tecnico: { caixa: Math.round(r.d.caixa), receitaAno: Math.round(r.d.receitaAno), tributarioAno: Math.round(r.d.tributarioAno), fundingAno: Math.round(r.d.fundingAno), faturamentoAnual: Math.round(r.d.base.fatAno) },
+        leadScore: r.score, qualificado: r.qualified
+      }
+    };
+    post(lead);
+    track("lead_captured", { value: Math.round(r.comm.total), currency: "BRL", lead_score: r.score, qualified: r.qualified });
+    S.leadSent = true; save();
+  }
+
+  // ───────────────────────── Analisando ─────────────────────────
+  function renderAnalisando() {
+    if (!S.leadSent) return go("#/contato");
+    const a = S.answers;
+    const steps = [
+      "Mapeando sua carteira de recebíveis",
+      a.antecipa && a.antecipa !== "nao" ? "Calculando o deságio que hoje vai para o banco" : "Estimando receitas financeiras possíveis",
+      "Cruzando regime tributário e despesas financeiras",
+      a.divida && a.divida !== "nao" ? "Comparando seu custo de dívida com funding estruturado" : "Avaliando autonomia de funding",
+      "Montando seu Índice de Eficiência Financeira"
+    ];
+    shell(`<section class="analyzing"><div class="spinner"></div><span class="kicker">Analisando</span><h1 style="font-size:clamp(24px,4.4vw,34px);margin-top:10px">Construindo seu diagnóstico…</h1>
+      <ul class="checklist">${steps.map(s => `<li><span class="ck"></span>${esc(s)}</li>`).join("")}</ul></section>`, "Processando");
+    const lis = app.querySelectorAll(".checklist li");
+    lis.forEach((li, i) => setTimeout(() => { li.classList.add("done"); li.querySelector(".ck").innerHTML = icon.check; }, 550 * (i + 1)));
+    setTimeout(() => { if (location.hash === "#/analisando") go("#/resultado"); }, 550 * steps.length + 650);
+  }
+
+  // ───────────────────────── Resultado ─────────────────────────
+  let cleanups = [];
+  function cleanupResult() { cleanups.forEach(fn => { try { fn(); } catch (e) { /* ok */ } }); cleanups = []; }
+
+  function gauge(value, bandTone) {
+    const W2 = 300, H2 = 176, cx = 150, cy = 158, R = 124, sw = 18;
+    const pt = (p, r) => { const ang = Math.PI * (1 - p / 100); return [cx + r * Math.cos(ang), cy - r * Math.sin(ang)]; };
+    const arc = (a, b) => { const [x1, y1] = pt(a, R), [x2, y2] = pt(b, R); return `M${x1.toFixed(1)} ${y1.toFixed(1)} A${R} ${R} 0 0 1 ${x2.toFixed(1)} ${y2.toFixed(1)}`; };
+    const segs = [[0, 40, "#C2553D"], [40, 60, "#D49A2A"], [60, 80, "#2F8FA6"], [80, 100, "#3FA684"]];
+    return `<svg viewBox="0 0 ${W2} ${H2}" width="100%" style="max-width:300px" role="img" aria-label="Índice ${value} de 100">
+      <path d="${arc(0, 100)}" stroke="rgba(255,255,255,.07)" stroke-width="${sw + 4}" fill="none" stroke-linecap="round"/>
+      ${segs.map(([a, b, c]) => `<path d="${arc(a + (a ? 1.2 : 0), b - (b < 100 ? 1.2 : 0))}" stroke="${c}" stroke-width="${sw}" fill="none" stroke-linecap="round" opacity=".92"/>`).join("")}
+      <g id="needle" style="transform-origin:${cx}px ${cy}px;transform:rotate(-90deg);transition:transform 1.3s cubic-bezier(.2,.8,.2,1)">
+        <polygon points="${cx - 6},${cy} ${cx + 6},${cy} ${cx},${cy - R + 26}" fill="#F9FAFA"/>
+      </g>
+      <circle cx="${cx}" cy="${cy}" r="11" fill="#0E2323" stroke="#F9FAFA" stroke-width="3"/>
+    </svg>`;
+  }
+
+  function waLink(r) {
+    const c = S.contato, emp = c.empresa || "minha empresa";
+    const msg = `Olá! Sou ${c.nome?.split(" ")[0] || ""}${c.cargo ? ", " + c.cargo : ""} da ${emp}. Fiz o Diagnóstico de Valor Financeiro: índice ${r.d.indice}/100, ${r.comm.frentes} frentes mapeadas e até ${brl(r.comm.total)} em jogo em 5 anos. Quero entender os próximos passos.`;
+    return `https://wa.me/${CFG.whatsapp}?text=${encodeURIComponent(msg)}`;
+  }
+
+  function renderResultado() {
+    if (!S.leadSent) return go("#/contato");
+    const r = E.resultado(S.answers, S.contato, W);
+    const d = r.d, c = r.comm, b = d.base;
+    const emp = S.contato.empresa ? nomeEmpresa(S.contato.empresa) : "sua empresa";
+    const primeiro = (S.contato.nome || "").split(" ")[0];
+    const wa = waLink(r);
+    const ctaLabel = r.qualified ? "Falar com um especialista" : "Receber minha análise no WhatsApp";
+    const nf = d.frentes.length;
+    const notaCls = n => (n === "A+" ? "n-ap" : n === "A" ? "n-a" : "n-b");
+    const motorLbl = { caixa: "Caixa", receita: "Receita", tributario: "Imposto", funding: "Funding" };
+    const ordemNota = { "A+": 0, A: 1, B: 2 };
+    const fs = d.frentes.slice().sort((x, y) => ordemNota[x.nota] - ordemNota[y.nota]);
+    const economizarPct = b.baseAnual > 0 ? Math.round((c.economizarAno + c.fundingAno) / b.baseAnual * 100) : 0;
+    const top = c.maior;
+
+    const motorCard = (key, ic, label, val, per, txt) => `
+      <div class="mc ${top === key ? "top" : ""}">
+        ${top === key ? '<span class="flag">★ Maior oportunidade</span>' : ""}
+        <div class="lbl"><span class="ico">${ic}</span>${label}</div>
+        <div class="val">até ${brl(val)} <span class="per">${per}</span></div>
+        <p>${txt}</p>
+      </div>`;
+
+    document.body.className = "light";
+    app.innerHTML = `
+    <div class="r-hero">
+      <div class="wrap-wide">
+        <header class="topbar">${logo(false)}<span class="tag">Diagnóstico de Valor Financeiro</span></header>
+        <div class="r-hero-grid">
+          <div>
+            <span class="kicker">Resultado${primeiro ? " · " + esc(primeiro) : ""}</span>
+            <h1>${esc(emp)} tem <span class="hl">${c.frentes} frentes</span> para capturar valor financeiro.</h1>
+            <p class="sub">${esc(labelOf("setor"))} · ${esc(labelOf("regime"))} · faturamento anual ${esc(labelOf("faturamento"))}. Cruzamos suas respostas com as estruturas que a Somos Valor desenha para empresas do seu porte.</p>
+            <div class="hero-total">
+              <span class="kicker">Em jogo nos próximos 5 anos</span>
+              <div class="v">até ${brl(c.total)}</div>
+              <p>entre caixa destravado, novas receitas financeiras, impostos e funding mais barato.</p>
+            </div>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="${wa}" target="_blank" rel="noopener" data-cta="hero">${icon.wa} ${ctaLabel}</a>
+            </div>
+          </div>
+          <div class="gauge-card">
+            <span class="kicker" style="color:rgba(249,250,250,.55)">Índice de Eficiência Financeira</span>
+            ${gauge(d.indice)}
+            <div class="gauge-num"><span id="gnum">0</span><small>/100</small></div>
+            <span class="band ${d.banda.tone}">${esc(d.banda.label)}</span>
+            <p class="muted" style="font-size:12.5px;text-align:center;margin-top:12px;max-width:280px">Quanto menor o índice, mais valor da sua operação está ficando com bancos, adquirentes e impostos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap-wide">
+      <section class="motor-cards">
+        ${motorCard("caixa", icon.cash, "Caixa a destravar", c.caixa, "uma vez", "Recebíveis a prazo que viram caixa no dia zero, sem dívida no balanço.")}
+        ${motorCard("receitas", icon.up, "Receitas e impostos", c.economizarAno, "/ano", `≈ ${brl(c.economizarMes)}/mês entre receita financeira nova e imposto que deixa de sair.`)}
+        ${motorCard("funding", icon.bank, "Funding mais barato", c.fundingAno, "/ano", "Juros e encargos que deixam de ir para o banco com uma estrutura própria.")}
+      </section>
+
+      <section class="section summary-grid">
+        <div class="card">
+          <span class="kicker">Em resumo</span>
+          <h2>Identificamos que ${esc(emp)} pode:</h2>
+          <ul class="bullets">
+            <li><span class="ico">${icon.cash}</span><span><b>destravar até ${brl(c.caixa)}</b> de caixa hoje parado em recebíveis.</span></li>
+            <li><span class="ico">${icon.up}</span><span><b>capturar até ${brl(c.economizarAno)}/ano</b> em receitas financeiras e eficiência tributária.</span></li>
+            <li><span class="ico">${icon.bank}</span><span><b>economizar até ${brl(c.fundingAno)}/ano</b> trocando funding bancário por estrutura própria.</span></li>
+          </ul>
+          <div class="divider"></div>
+          <p style="color:var(--ink-2);font-size:15px">Somando os próximos 5 anos, são <b>até ${brl(c.total)}</b> em jogo, em <b>${c.frentes} frentes</b> mapeadas para o seu negócio, o equivalente a até ${economizarPct}% do que a empresa gasta hoje por ano com impostos e custo financeiro.</p>
+          <p class="muted" style="font-size:13px;margin-top:10px">Fale com um especialista da Somos Valor no WhatsApp: ele explica, sem enrolação, como cada frente pode ser capturada no seu caso.</p>
+        </div>
+        <div class="card-deep" id="cta-box">
+          <span class="kicker">Próximo passo</span>
+          <h3 style="font-size:clamp(21px,3vw,26px);margin-top:12px">${r.qualified ? "Falar com um especialista da Somos Valor" : "Receber sua análise no WhatsApp"}</h3>
+          <ul class="cta-list">
+            <li>${icon.check} Leitura do seu diagnóstico, frente por frente</li>
+            <li>${icon.check} Quanto vale, qual o risco e por onde começar</li>
+            <li>${icon.check} Sem custo pela conversa</li>
+          </ul>
+          <a class="btn btn-primary btn-block" href="${wa}" target="_blank" rel="noopener" data-cta="resumo">${icon.wa} ${ctaLabel}</a>
+        </div>
+      </section>
+
+      <section class="section card">
+        <span class="kicker">Diagnóstico sob medida</span>
+        <h2>${nf ? `${nf} frentes ativadas pelas suas respostas` : "Frentes a validar na conversa"}</h2>
+        <div class="legend"><span><i style="background:var(--deep)"></i>A+ · alta aderência</span><span><i style="background:rgba(63,166,132,.35)"></i>A · aderente</span><span><i style="background:#E3E9E7"></i>B · a validar</span></div>
+        <div class="fronts">
+          ${fs.map(f => `<div class="front"><span class="nota ${notaCls(f.nota)}">${f.nota}</span><div><h3>${esc(f.rotulo)}</h3><p>${esc(f.desc)}${f.gatNS ? " <em>(confirmar na conversa)</em>" : ""}</p></div><span class="mt">${motorLbl[f.motor]}</span></div>`).join("")}
+          ${nf === 0 ? `<p class="muted">Suas respostas indicam uma operação com pouco giro a prazo. Ainda assim, há frentes de estrutura (holding, regime e funding) que valem uma conversa.</p>` : ""}
+        </div>
+      </section>
+
+      <section class="section card">
+        <span class="kicker">Se você agir · vs · se não agir</span>
+        <h2>O preço da inércia em 5 anos</h2>
+        <div class="versus">
+          <div class="card-deep" style="box-shadow:none">
+            <span class="chip go">★ Com uma Estrutura Financeira Estratégica</span>
+            <div style="margin-top:14px">
+              <div class="vs-row"><span>Caixa destravado</span><b>até ${brl(c.caixa)}</b></div>
+              <div class="vs-row"><span>Receitas e impostos</span><b>até ${brl(c.economizarAno)}/ano</b></div>
+              <div class="vs-row"><span>Funding</span><b>até ${brl(c.fundingAno)}/ano</b></div>
+            </div>
+            <div class="vs-total" style="background:rgba(63,166,132,.12);border:1px solid rgba(63,166,132,.3)"><span class="kicker">Ganho potencial em 5 anos</span><div class="v">+ ${brl(c.total)}</div></div>
+          </div>
+          <div class="vs-bad">
+            <span class="chip stop">Se nada mudar</span>
+            <div style="margin-top:14px">
+              <div class="vs-row"><span>Custo financeiro</span><b>${b.custoFinanceiroAno > 0 ? brl(b.custoFinanceiroAno) + "/ano para bancos" : "dependência de banco para crescer"}</b></div>
+              <div class="vs-row"><span>Recebíveis</span><b>${b.carteira > 0 ? brl(b.carteira) + " parados no balanço" : "sem estrutura própria de crédito"}</b></div>
+              <div class="vs-row"><span>Impostos</span><b>${brl(b.cargaTribAno)}/ano sem desenho estrutural</b></div>
+            </div>
+            <div class="vs-total" style="background:#fff;border:1px solid #F0D9D2"><span class="kicker" style="color:var(--danger)">Deixado na mesa em 5 anos</span><div class="v" style="color:var(--danger)">− ${brl(c.total)}</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section card-deep">
+        <div class="case">
+          <div>
+            <span class="kicker">Quem já faz</span>
+            <h2 style="font-size:clamp(22px,3.4vw,30px);margin-top:10px">A Havan cresceu 16% enquanto o varejo cresceu menos de 3%. A diferença está no balanço.</h2>
+            <p class="muted" style="margin-top:12px;font-size:14.5px">Com um FIDC próprio, o deságio que ia para o banco virou receita do acionista, e a empresa bancou novas lojas com o próprio giro. Você não precisa ser a Havan: a estrutura é desenhada para o porte da sua empresa.</p>
+            <a class="btn btn-ghost" style="margin-top:18px;color:var(--cream)" href="${esc(CFG.caseUrl)}" target="_blank" rel="noopener" data-cta="case">Ler o case completo ${icon.arrow}</a>
+          </div>
+          <div class="stats">
+            <div class="stat"><b>R$ 3,52 bi</b><span>patrimônio do FIDC Havan (1T26)</span></div>
+            <div class="stat"><b>15,6% → 21,2%</b><span>ROIC em um ano</span></div>
+            <div class="stat"><b>−R$ 706 mi</b><span>dívida líquida (caixa líquido)</span></div>
+            <div class="stat"><b>47 → 44 dias</b><span>prazo médio de recebimento</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section card-deep next">
+        <div>
+          <span class="kicker">Próximo passo</span>
+          <h2 style="font-size:clamp(24px,3.6vw,34px);margin-top:12px">Fale com um especialista da Somos Valor no WhatsApp.</h2>
+          <p class="muted" style="margin-top:14px;font-size:15px">Pelo seu perfil (${esc(labelOf("setor"))} · ${esc(labelOf("regime"))} · faturamento ${esc(labelOf("faturamento"))}), um especialista analisa o caso, frente por frente, e te diz quanto vale, qual o risco e por onde começar.</p>
+          <a class="btn btn-primary" style="margin-top:22px" href="${wa}" target="_blank" rel="noopener" data-cta="final">${icon.wa} ${ctaLabel}</a>
+        </div>
+        <div class="side">
+          <div class="trust"><span class="ico">${icon.clock}</span><div><b>Resposta em 1 dia útil</b><p>Time com trajetória em bancos, assets e mercado de capitais.</p></div></div>
+          <div class="trust"><span class="ico">${icon.spark}</span><div><b>Análise frente por frente</b><p>${flow().length} respostas cruzadas com setor, regime, recebíveis e funding.</p></div></div>
+          <div class="trust"><span class="ico">${icon.shield}</span><div><b>Sem conflito de interesse</b><p>Atuamos pelo empresário. Dados usados só para este diagnóstico.</p></div></div>
+        </div>
+      </section>
+
+      <footer class="r-foot">
+        <div class="r-actions">
+          <button class="btn btn-ghost" id="pdf">Baixar PDF</button>
+          <button class="btn btn-ghost" id="share">Compartilhar</button>
+          <button class="btn btn-ghost" id="retry">Refazer diagnóstico</button>
+        </div>
+        <p class="disclaimer">Diagnóstico preliminar e estimativo, gerado a partir de respostas autodeclaradas e de parâmetros médios de mercado. Os valores indicam o potencial máximo ("até") e não constituem promessa de resultado, recomendação de investimento ou oferta de valores mobiliários. A viabilidade de cada estrutura depende de análise contábil, jurídica e regulatória do caso concreto.</p>
+        <div style="display:flex;justify-content:center;margin-top:20px">${logo(true)}</div>
+      </footer>
+    </div>
+
+    <div class="sticky-cta" id="sticky"><div class="in"><div class="t">Em jogo em 5 anos<b>até ${brl(c.total)}</b></div><a class="btn btn-primary" href="${wa}" target="_blank" rel="noopener" data-cta="sticky">${icon.wa} WhatsApp</a></div></div>`;
+
+    // Agulha + contador
+    requestAnimationFrame(() => {
+      const nd = document.getElementById("needle");
+      if (nd) nd.style.transform = `rotate(${-90 + d.indice * 1.8}deg)`;
+      const el = document.getElementById("gnum"); const t0 = performance.now();
+      const tick = t => { const p = Math.min(1, (t - t0) / 1200); el.textContent = Math.round(d.indice * (1 - (1 - p) ** 3)); if (p < 1) requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+    });
+
+    // Eventos do resultado
+    if (!S._rv) { S._rv = 1; save(); track("result_viewed", { indice: d.indice, total: Math.round(c.total), frentes: c.frentes, qualified: r.qualified }); }
+    app.querySelectorAll("a[data-cta]").forEach(a => a.addEventListener("click", () => {
+      const where = a.dataset.cta;
+      track(where === "case" ? "cta_click" : "whatsapp_click", { where });
+    }));
+    const marks = { s50: false, s90: false };
+    const onScroll = () => {
+      const h = document.documentElement, max = h.scrollHeight - h.clientHeight; if (max <= 0) return;
+      const p = window.scrollY / max;
+      if (p > 0.5 && !marks.s50) { marks.s50 = true; track("scroll_50"); }
+      if (p > 0.9 && !marks.s90) { marks.s90 = true; track("scroll_90"); }
+      document.getElementById("sticky")?.classList.toggle("show", window.scrollY > 520);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    const t30 = setTimeout(() => track("time_30s"), 30000), t60 = setTimeout(() => track("time_60s"), 60000);
+    let io;
+    if ("IntersectionObserver" in window) {
+      io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { track("cta_view"); io.disconnect(); } }), { threshold: 0.5 });
+      io.observe(document.getElementById("cta-box"));
+    }
+    cleanups.push(() => { window.removeEventListener("scroll", onScroll); clearTimeout(t30); clearTimeout(t60); io && io.disconnect(); });
+
+    document.getElementById("pdf").onclick = () => { track("pdf_download"); window.print(); };
+    document.getElementById("share").onclick = async () => {
+      track("share_click");
+      const data = { title: "Diagnóstico de Valor Financeiro — Somos Valor", text: "Descubra quanto dinheiro está parado dentro da sua empresa.", url: location.origin + location.pathname };
+      try { if (navigator.share) await navigator.share(data); else { await navigator.clipboard.writeText(data.url); alert("Link copiado."); } } catch (e) { /* cancelado */ }
+    };
+    document.getElementById("retry").onclick = () => {
+      track("retry_calculator");
+      const utm = S.utm; S = blank(); S.utm = utm; save(); go("#/");
+    };
+
+    popup(r, wa);
+  }
+
+  function labelOf(qid) {
+    const q = E.Q[qid], o = q.options.find(x => x.id === S.answers[qid]);
+    return o ? o.label : "";
+  }
+
+  // Pop-up de retenção: 25s ou 40% de rolagem, uma vez por sessão
+  function popup(r, wa) {
+    let key = "sv_popup_" + S.submissionId;
+    try { if (sessionStorage.getItem(key) === "1") return; } catch (e) { /* ok */ }
+    let shown = false;
+    const show = () => {
+      if (shown || location.hash !== "#/resultado") return; shown = true;
+      try { sessionStorage.setItem(key, "1"); } catch (e) { /* ok */ }
+      track("popup_shown");
+      const first = (S.contato.nome || "").split(" ")[0];
+      const el = document.createElement("div");
+      el.className = "modal-bg";
+      el.innerHTML = `<div class="modal" role="dialog" aria-modal="true" aria-label="Seu diagnóstico">
+        <button class="x" aria-label="Fechar">✕</button>
+        <div class="top"><span class="kicker">Espera${first ? ", " + esc(first) : ""}</span><div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;margin-top:14px;color:rgba(249,250,250,.5)">Em jogo nos próximos 5 anos</div><div class="v">até ${brl(r.comm.total)}</div><p style="font-size:12.5px;color:rgba(249,250,250,.6);margin-top:6px">entre caixa, receitas, impostos e funding</p></div>
+        <div class="bot"><h3 style="font-size:18px">Seu diagnóstico mapeou ${r.comm.frentes} frentes. Vale destravar hoje?</h3>
+          <p style="font-size:13.5px;color:var(--gray)">Um especialista te mostra por onde começar, sem custo pela conversa.</p>
+          <a class="btn btn-primary btn-block" href="${wa}" target="_blank" rel="noopener">${icon.wa} ${r.qualified ? "Falar com um especialista" : "Receber no WhatsApp"}</a></div></div>`;
+      document.body.appendChild(el);
+      const close = () => el.remove();
+      el.addEventListener("click", e => { if (e.target === el) close(); });
+      el.querySelector(".x").onclick = close;
+      el.querySelector("a").onclick = () => { track("popup_click"); close(); };
+      cleanups.push(close);
+    };
+    const onS = () => { const h = document.documentElement, m = h.scrollHeight - h.clientHeight; if (m > 0 && window.scrollY / m > 0.4) show(); };
+    const t = setTimeout(show, 25000);
+    window.addEventListener("scroll", onS, { passive: true });
+    cleanups.push(() => { clearTimeout(t); window.removeEventListener("scroll", onS); });
+  }
+
+  route();
+})();
+
+</script>
+</body>
+</html>
